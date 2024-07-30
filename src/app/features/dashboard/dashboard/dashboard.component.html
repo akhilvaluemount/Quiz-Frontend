@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a routerLink="organizations">Organizations</a></li>
+            <li><a routerLink="courses">Courses</a></li>
+            <!-- <li class="submenu">
+                <a href="#">Organizations</a>
+                <ul>
+                    <li><a routerLink="organizations/create-organization">Create Organization</a></li>
+                    <li><a routerLink="organizations/view-organizations">View Organizations</a></li>
+                </ul>
+            </li> -->
+            <li class="submenu">
+                <a href="#">Content</a>
+                <ul>
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p>6692b5f704a752493730f489</p>
+    </div>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+         <!-- <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <button class="btn btn-primary">Create New Quiz</button>
+        </div> -->
+        <!--<div class="quizzes">
+            <div class="quiz-card" *ngFor="let quiz of quizzes">
+                <h2>{{ quiz.title }}</h2>
+                <p>{{ quiz.description }}</p>
+                <small>{{ quiz.date | date:'short' }}</small>
+            </div>
+        </div> -->
+    </div>
+</div>

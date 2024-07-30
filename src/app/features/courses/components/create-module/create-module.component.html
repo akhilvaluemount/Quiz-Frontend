@@ -1,0 +1,13 @@
+<div class="dashboard-header">
+    <h1>Create Module</h1>
+    <button class="btn btn-primary" (click)="viewModules()">View Modules</button>
+</div>
+<form [formGroup]="moduleForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+
+    <label>Course:</label>
+    <input type="text" formControlName="courseId">
+
+    <button type="submit" [disabled]="!moduleForm.valid">Create Module</button>
+</form>

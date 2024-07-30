@@ -1,0 +1,61 @@
+<!-- quiz-form.component.html -->
+<div class="dashboard-header">
+    <h1>Create Quiz</h1>
+    <button class="btn btn-primary" (click)="viewQuizzes()">View quizzes</button>
+</div>
+<!-- quiz-form.component.html -->
+
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <label>Title:</label>
+    <input type="text" formControlName="title" required>
+
+    <label>Description:</label>
+    <textarea formControlName="description"></textarea>
+
+    <label>Creator:</label>
+    <input type="text" formControlName="creator" required>
+
+    <label>Duration (minutes):</label>
+    <input type="number" formControlName="duration">
+
+    <label>Tags:</label>
+    <div formArrayName="tags">
+        <div *ngFor="let tagControl of tags.controls; let i = index">
+            <input formControlName="{{i}}">
+            <button type="button" (click)="removeTag(i)">Remove Tag</button>
+        </div>
+        <button type="button" (click)="addTag()">Add Tag</button>
+    </div>
+
+    <label>Published:</label>
+    <input type="checkbox" formControlName="isPublished">
+
+    <label>Published At:</label>
+    <input type="date" formControlName="publishedAt">
+
+    <label>Visibility:</label>
+    <select formControlName="visibility">
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+    </select>
+
+    <hr>
+
+    <label>Organization ID:</label>
+    <input type="text" formControlName="organizationId" required>
+
+    <label>Course ID:</label>
+    <input type="text" formControlName="courseId" required>
+
+    <label>Module ID:</label>
+    <input type="text" formControlName="moduleId" required>
+
+    <label>Chapter ID:</label>
+    <input type="text" formControlName="chapterId" required>
+
+    <label>Topic ID:</label>
+    <input type="text" formControlName="topicId" required>
+
+    <button type="submit">Submit</button>
+
+</form>

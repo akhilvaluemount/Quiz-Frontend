@@ -1,0 +1,35 @@
+<div class="dashboard-header">
+    <h1>Organizations</h1>
+    <button class="btn btn-primary" routerLink="create">Create Organization</button>
+</div>
+<table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Logo</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>Type</th>
+        <th>Actions</th>
+        <!-- <th>branch</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let org of organizations">
+        <td>{{ org.name }}</td>
+        <td><img [src]="org.logo" alt="Logo" class="logo" style="width: 100px;"></td>
+        <td>{{ org.address.street }}, {{ org.address.city }}, {{ org.address.state }} {{ org.address.zip }}</td>
+        <td>{{ org.contact.phone }} <br> {{ org.contact.email }}</td>
+        <td>{{ org.type }}</td>
+        <td>
+          <button (click)="deleteOrganization(org._id)" class="btn btn-danger">delete</button>
+        </td>
+        <!-- <td>{{ org.branch }}</td> -->
+        <!-- <td>{{ org.createdAt.timestamp | date:'short' }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  

@@ -1,0 +1,13 @@
+<div class="dashboard-header">
+    <h1>Create Chapter</h1>
+    <button class="btn btn-primary" (click)="viewChapter()">View Chapters</button>
+</div>
+<form [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+
+    <label>Module:</label>
+    <input type="text" formControlName="moduleId">
+
+    <button type="submit" [disabled]="!chapterForm.valid">Create Chapter</button>
+</form>

@@ -1,0 +1,13 @@
+<div class="dashboard-header">
+    <h1>Create Topic</h1>
+    <button class="btn btn-primary" (click)="viewTopics()">View Topics</button>
+</div>
+<form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+
+    <label>Chapter:</label>
+    <input type="text" formControlName="chapterId">
+
+    <button type="submit" [disabled]="!topicForm.valid">Create Topic</button>
+</form>
