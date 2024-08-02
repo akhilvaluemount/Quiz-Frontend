@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <h1>Modules</h1>
-    <button class="btn btn-primary" routerLink="../../create-module">Create New Module</button>
+    <button class="btn btn-primary" routerLink="../../create-module/{{courseID}}">Create New Module</button>
 </div>
 <div class="quiz-cards">
     <div class="quiz-card" routerLink="../../view-chapters/{{module._id}}" *ngFor="let module of modules">

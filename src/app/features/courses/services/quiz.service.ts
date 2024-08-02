@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,8 +18,13 @@ export class QuizService {
   }
 
   // Get all quizzes
-  getQuizzes(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+  getQuizzes(hierarchy:string, id:string): Observable<any[]> {
+
+    let params = new HttpParams()
+    .set('hierarchy', hierarchy)
+    .set('id', id);
+
+    return this.http.get<any[]>(this.baseUrl,{ params });
   }
 
   // Get a quiz by ID

@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <h1>Topics</h1>
-    <button class="btn btn-primary" routerLink="../../create-topic">Create New Topic</button>
+    <button class="btn btn-primary" routerLink="../../create-topic/{{chapterID}}">Create New Topic</button>
 </div>
 <div class="quiz-cards">
     <div class="quiz-card" *ngFor="let topic of topics">
@@ -9,3 +9,7 @@
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->
     </div>
 </div>
+
+<br>
+
+<app-view-quizzes [hierarchy]="'chapter'" [id]="chapterID"></app-view-quizzes>

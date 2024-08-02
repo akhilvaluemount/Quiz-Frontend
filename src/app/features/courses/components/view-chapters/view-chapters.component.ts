@@ -8,14 +8,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-chapters.component.scss']
 })
 export class ViewChaptersComponent {
+  moduleID:string=""
   chapters: Chapter[] = [];
 
   constructor(private _chapterService: ChapterService, private _activatedRoute: ActivatedRoute) {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
-
-        this._chapterService.getChaptersByModuleId(params.id)
+        this.moduleID=params.moduleID
+        this._chapterService.getChaptersByModuleId(this.moduleID)
           .subscribe(
             (chapters: any) => {
               this.chapters = chapters;

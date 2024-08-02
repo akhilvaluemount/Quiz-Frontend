@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TopicService } from '../../services/topic.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-topic',
@@ -9,18 +10,24 @@ import { Location } from '@angular/common';
   styleUrls: ['./create-topic.component.scss']
 })
 export class CreateTopicComponent {
-
+  chapterID:string=""
   topicForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private _topicService: TopicService,
-    private location: Location
+    private location: Location,
+    private _activatedRoute: ActivatedRoute
   ) {
 
+    this._activatedRoute.params.subscribe((params: any) => {
+      this.chapterID = params.chapterID;
+      console.log(this.chapterID)
+    });
+    
     this.topicForm = this.formBuilder.group({
       name: ['', Validators.required],
-      chapterId: ['', Validators.required]
+      chapterId: [{value: this.chapterID, disabled: true }, Validators.required]
     });
 
    }

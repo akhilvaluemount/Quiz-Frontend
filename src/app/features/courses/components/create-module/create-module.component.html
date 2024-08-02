@@ -7,7 +7,7 @@
     <input type="text" formControlName="name">
 
     <label>Course:</label>
-    <input type="text" formControlName="courseId">
+    <input type="text" [disabled]="true"  formControlName="courseId">
 
     <button type="submit" [disabled]="!moduleForm.valid">Create Module</button>
 </form>

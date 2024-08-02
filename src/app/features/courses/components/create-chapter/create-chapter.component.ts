@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChapterService } from '../../services/chapter.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-chapter',
@@ -9,18 +10,22 @@ import { ChapterService } from '../../services/chapter.service';
   styleUrls: ['./create-chapter.component.scss']
 })
 export class CreateChapterComponent {
-
+  moduleID :string = ""
   chapterForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private chapterService: ChapterService,
-    private location: Location
+    private location: Location,
+    private _activatedRoute: ActivatedRoute
   ) {
+    _activatedRoute.params.subscribe((params: any) => {
+      this.moduleID = params.moduleID;
+    });
 
     this.chapterForm = this.formBuilder.group({
       name: ['', Validators.required],
-      moduleId: ['', Validators.required]
+      moduleId: [{value:this.moduleID,disabled:true}, Validators.required]
     });
 
    }
