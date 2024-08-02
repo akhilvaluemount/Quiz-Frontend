@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 
 @Component({
@@ -6,11 +6,18 @@ import { QuizService } from '../../services/quiz.service';
   templateUrl: './view-quizzes.component.html',
   styleUrls: ['./view-quizzes.component.scss']
 })
-export class ViewQuizzesComponent {
+export class ViewQuizzesComponent implements OnChanges {
+
+  @Input() public hierarchy:string = "";
+  @Input() public id:string = "";
 
   quizzes: any=[];
 
   constructor(private quizService: QuizService) { 
+    // this.fetchQuizzes();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.fetchQuizzes();
   }
 
@@ -19,7 +26,7 @@ export class ViewQuizzesComponent {
   }
 
   fetchQuizzes(): void {
-    this.quizService.getQuizzes().subscribe(
+    this.quizService.getQuizzes(this.hierarchy, this.id).subscribe(
       (quizzes) => {
         this.quizzes = quizzes;
       },

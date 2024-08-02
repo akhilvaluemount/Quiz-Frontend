@@ -10,13 +10,15 @@ import { Topic, TopicService } from '../../services/topic.service';
 })
 export class ViewTopicsComponent {
   topics: Topic[] = [];
+  chapterID:string = "";
 
   constructor(private _topicService: TopicService, private _activatedRoute: ActivatedRoute) {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
+        this.chapterID = params.chapterID;
 
-        this._topicService.getTopicsByChapterId(params.id)
+        this._topicService.getTopicsByChapterId(this.chapterID)
           .subscribe(
             (topics: any) => {
               this.topics = topics;

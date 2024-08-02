@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <h1>Chapters</h1>
-    <button class="btn btn-primary" routerLink="../../create-chapter">Create New Chapter</button>
+    <button class="btn btn-primary" routerLink="../../create-chapter/{{moduleID}}">Create New Chapter</button>
 </div>
 <div class="quiz-cards">
     <div class="quiz-card" routerLink="../../view-topics/{{chapter._id}}" *ngFor="let chapter of chapters">
@@ -9,3 +9,6 @@
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->
     </div>
 </div>
+
+
+<app-question-form></app-question-form>

@@ -1,0 +1,39 @@
+<div class="form-container">
+
+  <div class="question-container">
+    <input type="text" placeholder="Question" [(ngModel)]="questionText" class="question-input">
+  </div>
+
+  <ng-container [ngSwitch]="questionType">
+
+    <!-- Multiple Choice and Multi-Select -->
+    <div *ngSwitchCase="'multiple-choice'" class="options-container">
+      <div class="option" *ngFor="let option of options; let i = index">
+        <input type="radio" name="option" [value]="option" *ngIf="!multiSelect">
+        <input type="checkbox" name="option" [value]="option" *ngIf="multiSelect">
+        <input type="text" [(ngModel)]="options[i]" placeholder="Option {{i + 1}}">
+        <button (click)="removeOption(i)" class="remove-button">✖</button>
+      </div>
+      <div class="add-option-container">
+        <button (click)="addOption()" class="add-option-button">Add option</button>
+        <span>or <button (click)="addOtherOption()" class="add-other-button">add "Other"</button></span>
+      </div>
+    </div>
+
+    <!-- True/False -->
+    <div *ngSwitchCase="'true-false'" class="options-container">
+      <div class="option">
+        <input type="radio" name="option" value="True"> True
+      </div>
+      <div class="option">
+        <input type="radio" name="option" value="False"> False
+      </div>
+    </div>
+
+  </ng-container>
+
+  <div class="footer">
+    <button class="required-toggle" (click)="toggleRequired()">Required</button>
+  </div>
+
+</div>

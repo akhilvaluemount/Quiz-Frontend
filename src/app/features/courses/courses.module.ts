@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import { ViewCoursesComponent } from './components/view-courses/view-courses.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseService } from './services/course.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateModuleComponent } from './components/create-module/create-module.component';
@@ -20,6 +20,7 @@ import { CreateQuizComponent } from './components/create-quiz/create-quiz.compon
 import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 import { QuizService } from './services/quiz.service';
 import { ViewQuizzesComponent } from './components/view-quizzes/view-quizzes.component';
+import { QuestionFormComponent } from './components/question-form-component/question-form.component';
 
 
 @NgModule({
@@ -34,10 +35,12 @@ import { ViewQuizzesComponent } from './components/view-quizzes/view-quizzes.com
     ViewTopicsComponent,
     CreateQuizComponent,
     ViewQuizComponent,
-    ViewQuizzesComponent
+    ViewQuizzesComponent,
+    QuestionFormComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CoursesRoutingModule
