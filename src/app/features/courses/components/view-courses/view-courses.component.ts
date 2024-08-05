@@ -11,14 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ViewCoursesComponent implements OnInit {
   courses: Course[] = [];
 
-  constructor(private courseService: CourseService,
-              private hierarchyService:HierarchyService,
-              private router:Router) {
+  constructor(private _courseService: CourseService,
+              private _hierarchyService:HierarchyService,
+              private _router:Router) {
 
   }
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe(
+    this._courseService.getCourses().subscribe(
       (courses: any) => {
         this.courses = courses;
       },
@@ -29,9 +29,9 @@ export class ViewCoursesComponent implements OnInit {
     );    
   }
 
-  selectedCourse(course:any){
-    this.hierarchyService.setCourse(course);
-    this.router.navigate(['/dashboard/courses/view-modules/'+course._id]);    
+  selectCourse(course:any){
+    this._hierarchyService.setCourse(course);
+    this._router.navigate(['/dashboard/courses/view-modules/'+course._id]);    
   }
 
 }

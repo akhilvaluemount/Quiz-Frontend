@@ -3,7 +3,7 @@
     <button class="btn btn-primary" routerLink="create-course">Create New Course</button>
 </div>
 <div class="quiz-cards">
-    <div (click)="selectedCourse(course)" class="quiz-card" *ngFor="let course of courses">
+    <div (click)="selectCourse(course)" class="quiz-card" *ngFor="let course of courses">
         <h2 >{{ course.name }}</h2>
         <p>{{ course._id }}</p>
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->

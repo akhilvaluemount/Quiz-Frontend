@@ -34,11 +34,4 @@ export class HierarchyService {
     this.hierarchy.chapter = chapter;
     this.hierarchySubject$.next(this.hierarchy);
   }
-
-
-
-
-
-
-
 }

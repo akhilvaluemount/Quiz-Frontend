@@ -1,9 +1,9 @@
 <div class="dashboard-header">
-    <h1>{{selectedModule.name}} Chapters</h1>
+    <h1>{{selectModule.name}} Chapters</h1>
     <button class="btn btn-primary" routerLink="../../create-chapter/{{moduleID}}">Create New Chapter</button>
 </div>
 <div class="quiz-cards">
-    <div class="quiz-card" (click)="selectedChapter(chapter)" *ngFor="let chapter of chapters">
+    <div class="quiz-card" (click)="selectChapter(chapter)" *ngFor="let chapter of chapters">
         <h2>{{ chapter.name }}</h2>
         <p>{{ chapter._id }}</p>
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->

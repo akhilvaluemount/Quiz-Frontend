@@ -11,11 +11,11 @@ import { HierarchyService } from '../../services/hierarchy.service';
 export class ViewModuleComponent {
   courseID: string = '';
   modules: Module[] = [];
-  selectedCourse:any;
+  selectCourse:any;
   constructor(
     private _moduleService: ModuleService,
     private _hierarchyService: HierarchyService,
-    private  router:Router,
+    private  _router:Router,
     private _activatedRoute: ActivatedRoute
   ) {
     _activatedRoute.params.subscribe((params: any) => {
@@ -32,8 +32,8 @@ export class ViewModuleComponent {
       );
     });
     _hierarchyService.getHierachy().subscribe(
-      (selectedCourse:any)=>{
-      this.selectedCourse=selectedCourse.course;      
+      (hierarchy:any)=>{
+      this.selectCourse=hierarchy.course;      
     },
       (error:any)=>{
         alert("Selected Course Not Found");
@@ -42,9 +42,9 @@ export class ViewModuleComponent {
 
   ngOnInit(): void {}
 
-  selectedModule(module:any){
-    const selectedModule= this._hierarchyService.setModule(module);
-    this.router.navigate(['/dashboard/courses/view-chapters/'+module._id]);    
+  selectModule(module:any){
+    this._hierarchyService.setModule(module);
+    this._router.navigate(['/dashboard/courses/view-chapters/'+module._id]);    
   }
 }
 

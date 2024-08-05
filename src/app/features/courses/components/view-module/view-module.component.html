@@ -1,9 +1,9 @@
 <div class="dashboard-header">
-    <h1>{{selectedCourse.name}} Modules</h1>
+    <h1>{{selectCourse.name}} Modules</h1>
     <button class="btn btn-primary" routerLink="../../create-module/{{courseID}}">Create New Module</button>
 </div>
 <div class="quiz-cards">
-    <div class="quiz-card" (click)="selectedModule(module)" *ngFor="let module of modules">
+    <div class="quiz-card" (click)="selectModule(module)" *ngFor="let module of modules">
         <h2>{{ module.name }}</h2>
         <p>{{ module._id }}</p>
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->

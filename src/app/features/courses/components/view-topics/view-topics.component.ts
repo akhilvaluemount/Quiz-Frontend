@@ -12,7 +12,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
 export class ViewTopicsComponent {
   topics: Topic[] = [];
   chapterID:string = "";
-  selectedChapter:any;
+  selectChapter:any;
 
   constructor(private _topicService: TopicService,
               private _hierarchyService:HierarchyService,
@@ -34,14 +34,13 @@ export class ViewTopicsComponent {
       }
     )
     _hierarchyService.getHierachy().subscribe(
-      (selectedChapter:any)=>{
-        this.selectedChapter = selectedChapter.chapter;
+      (hierarchy:any)=>{
+        this.selectChapter = hierarchy.chapter;
       },
       (error:any)=>{
         alert("Selected Chapter Not Found");
       }
     )
-
   }
 
   ngOnInit(): void {

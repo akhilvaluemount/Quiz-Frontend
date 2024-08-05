@@ -11,7 +11,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
 export class ViewChaptersComponent {
   moduleID:string=""
   chapters: Chapter[] = [];
-  selectedModule:any;
+  selectModule:any;
   constructor(private _chapterService: ChapterService,
               private _hierarchyService:HierarchyService,
               private _router:Router, 
@@ -32,22 +32,18 @@ export class ViewChaptersComponent {
       }
     )
     _hierarchyService.getHierachy().subscribe(
-      (selectedModule:any)=>{
-        this.selectedModule=selectedModule.module;
-        console.log(selectedModule);
-        
+      (hierarchy:any)=>{
+        this.selectModule=hierarchy.module;        
     }),
       (error:any)=>{
         alert('Selected Module not Found');
       }
-    
-
   }
 
   ngOnInit(): void {
   }
-  selectedChapter(chapter:any){
-    const selectedChapter= this._hierarchyService.setChapter(chapter);
+  selectChapter(chapter:any){
+    this._hierarchyService.setChapter(chapter);
     this._router.navigate(['/dashboard/courses/view-topics/'+chapter._id]);
   }
 }
