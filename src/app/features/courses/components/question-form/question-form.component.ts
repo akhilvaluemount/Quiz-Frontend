@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./question-form.component.css']
 })
 export class QuestionFormComponent {
+
   @Input() questionType: 'multiple-choice' | 'multi-select' | 'true-false'="multiple-choice";
   @Input() multiSelect: boolean = false;
   

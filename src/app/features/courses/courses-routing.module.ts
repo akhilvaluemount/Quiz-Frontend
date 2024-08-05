@@ -11,6 +11,7 @@ import { ViewTopicsComponent } from './components/view-topics/view-topics.compon
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 import { ViewQuizzesComponent } from './components/view-quizzes/view-quizzes.component';
+import { ViewTopicComponent } from './components/view-topic/view-topic.component';
 
 const routes: Routes = [
   { path: 'create-course', component: CreateCourseComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'view-chapters/:moduleID', component: ViewChaptersComponent },
   { path: 'create-topic/:chapterID', component: CreateTopicComponent },
   { path: 'view-topics/:chapterID', component: ViewTopicsComponent },
+  { path: 'view-topic/:topicID', component: ViewTopicComponent },  
   { path: 'create-quiz', component: CreateQuizComponent },
   { path: 'view-quiz', component: ViewQuizComponent },
   { path: 'view-quizzes', component: ViewQuizzesComponent },
