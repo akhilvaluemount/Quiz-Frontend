@@ -1,73 +1,104 @@
+/* Basic reset for styling consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
 
-.form-container {
-  width: 400px;
+/* Form styling */
+form {
+  max-width: 600px;
+  margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* Label styling */
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* Input, textarea, and select styling */
+textarea, select, input[type="text"] {
+  width: calc(100% - 10px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cccccc;
   border-radius: 5px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
 }
 
-.question-container {
-  margin-bottom: 20px;
+textarea:focus, select:focus, input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
-.question-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Checkbox styling */
+input[type="checkbox"] {
+  margin-left: 10px;
+  transform: scale(1.2);
 }
 
-.options-container {
-  margin-bottom: 20px;
+/* Button styling */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.option {
-  display: flex;
-  align-items: center;
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+div.ng-invalid.ng-touched {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Option group styling */
+div[formGroupName] {
   margin-bottom: 10px;
-}
-
-.option input[type="radio"], .option input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.option input[type="text"] {
-  flex-grow: 1;
-  padding: 10px;
-  margin-right: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.remove-button {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-}
-
-.add-option-container {
   display: flex;
   align-items: center;
 }
 
-.add-option-button, .add-other-button {
-  background: none;
-  border: none;
-  color: blue;
-  cursor: pointer;
+/* Remove button styling */
+button[type="button"] {
+  margin-left: 10px;
+  background-color: #dc3545;
 }
 
-.footer {
-  display: flex;
-  justify-content: flex-end;
+button[type="button"]:hover {
+  background-color: #c82333;
 }
 
-.required-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: blue;
+/* Form header styling */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #007bff;
 }
+
