@@ -3,7 +3,7 @@
     <button class="btn btn-primary" routerLink="../../create-topic/{{chapterID}}">Create New Topic</button>
 </div>
 <div class="quiz-cards">
-    <div class="quiz-card" *ngFor="let topic of topics">
+    <div class="quiz-card" routerLink="../../view-topic/{{topic._id}}" *ngFor="let topic of topics">
         <h2>{{ topic.name }}</h2>
         <p>{{ topic._id }}</p>
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->
