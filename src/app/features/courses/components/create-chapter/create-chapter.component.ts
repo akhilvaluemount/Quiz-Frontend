@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChapterService } from '../../services/chapter.service';
 import { ActivatedRoute } from '@angular/router';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-create-chapter',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { CourseService } from '../../services/course.service';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-create-course',
