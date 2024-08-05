@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModuleService } from '../../services/module.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-create-module',

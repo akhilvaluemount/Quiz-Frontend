@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Course } from './course.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -15,30 +12,29 @@ export class HierarchyService {
     chapter:{}
   };
 
-  private subject$: BehaviorSubject<any>= new BehaviorSubject(this.hierarchy);
+  private hierarchySubject$: BehaviorSubject<any>= new BehaviorSubject(this.hierarchy);
   constructor( ) { 
   }
 
   getHierachy(){
-    return this.subject$;
+    return this.hierarchySubject$;
   }
   
   setCourse(course:any){
     this.hierarchy.course = course;
-    this.subject$.next(this.hierarchy);
+    this.hierarchySubject$.next(this.hierarchy);
   }
 
   setModule(module:any){
     this.hierarchy.module = module;
-    this.subject$.next(this.hierarchy);
+    this.hierarchySubject$.next(this.hierarchy);
   }
 
   setChapter(chapter:any){
     this.hierarchy.chapter = chapter;
-    this.subject$.next(this.hierarchy);
+    this.hierarchySubject$.next(this.hierarchy);
   }
 
-  st(){}
 
 
 
