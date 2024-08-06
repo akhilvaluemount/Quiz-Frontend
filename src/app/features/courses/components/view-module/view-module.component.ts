@@ -9,7 +9,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
   styleUrls: ['./view-module.component.scss'],
 })
 export class ViewModuleComponent {
-  courseID: string = '';
+  courseId: string = '';
   modules: Module[] = [];
   selectCourse:any;
   constructor(
@@ -19,9 +19,9 @@ export class ViewModuleComponent {
     private _activatedRoute: ActivatedRoute
   ) {
     _activatedRoute.params.subscribe((params: any) => {
-      this.courseID = params.courseID;
-      console.log(this.courseID,"courseID")
-      this._moduleService.getModulesByCourseId(this.courseID).subscribe(
+      this.courseId = params.courseId;
+      console.log(this.courseId,"courseId")
+      this._moduleService.getModulesByCourseId(this.courseId).subscribe(
         (modules: any) => {
           this.modules = modules;
         },

@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <h1>{{selectModule.name}} Chapters</h1>
-    <button class="btn btn-primary" routerLink="../../create-chapter/{{moduleID}}">Create New Chapter</button>
+    <button class="btn btn-primary" routerLink="../../create-chapter/{{moduleId}}">Create New Chapter</button>
 </div>
 <div class="quiz-cards">
     <div class="quiz-card" (click)="selectChapter(chapter)" *ngFor="let chapter of chapters">
@@ -14,6 +14,6 @@
 
 <h1>{{selectModule.name}} Quizzes</h1>
 <br>
-<app-view-quizzes [hierarchy]="'module'" [id]="moduleID"></app-view-quizzes>
+<app-view-quizzes [hierarchy]="'module'" [id]="moduleId"></app-view-quizzes>
 
 <app-question-form></app-question-form>

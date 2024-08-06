@@ -25,9 +25,9 @@ label {
 }
 
 /* Input, textarea, and select styling */
-textarea, select, input[type="text"] {
+textarea, select, input[type="text"]{
   width: calc(100% - 10px);
-  padding: 10px;
+  padding: 10px !important;
   margin-top: 5px;
   border: 1px solid #cccccc;
   border-radius: 5px;
@@ -43,7 +43,7 @@ textarea:focus, select:focus, input[type="text"]:focus {
 }
 
 /* Checkbox styling */
-input[type="checkbox"] {
+input[type="checkbox"],input[type="radio"]  {
   margin-left: 10px;
   transform: scale(1.2);
 }
@@ -70,12 +70,6 @@ button:not(:disabled):hover {
   background-color: #0056b3;
 }
 
-/* Error message styling */
-div.ng-invalid.ng-touched {
-  color: #ff0000;
-  font-size: 12px;
-  margin-top: 5px;
-}
 
 /* Option group styling */
 div[formGroupName] {
@@ -100,5 +94,16 @@ h1 {
   margin-bottom: 20px;
   font-size: 24px;
   color: #007bff;
+}
+
+.quetion-container{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 50% 50%;
+
+  .quetion-text{
+    grid-area: 1 / 1 / span 2 / span 1;
+  }
+
 }
 

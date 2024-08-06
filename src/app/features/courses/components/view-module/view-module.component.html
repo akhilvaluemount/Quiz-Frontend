@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <h1>{{selectCourse.name}} Modules</h1>
-    <button class="btn btn-primary" routerLink="../../create-module/{{courseID}}">Create New Module</button>
+    <button class="btn btn-primary" routerLink="../../create-module/{{courseId}}">Create New Module</button>
 </div>
 <div class="quiz-cards">
     <div class="quiz-card" (click)="selectModule(module)" *ngFor="let module of modules">
@@ -14,4 +14,4 @@
 
 <h1>{{selectCourse.name}} Quizzes</h1>
 <br>
-<app-view-quizzes [hierarchy]="'course'" [id]="courseID"></app-view-quizzes>
+<app-view-quizzes [hierarchy]="'course'" [id]="courseId"></app-view-quizzes>
