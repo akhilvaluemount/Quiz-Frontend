@@ -9,7 +9,8 @@ export class HierarchyService {
   public hierarchy:any = {
     course:{},
     module:{},
-    chapter:{}
+    chapter:{},
+    topic:{}
   };
 
   private hierarchySubject$: BehaviorSubject<any>= new BehaviorSubject(this.hierarchy);
@@ -32,6 +33,11 @@ export class HierarchyService {
 
   setChapter(chapter:any){
     this.hierarchy.chapter = chapter;
+    this.hierarchySubject$.next(this.hierarchy);
+  }
+
+  setTopic(topic:any){
+    this.hierarchy.topic = topic;
     this.hierarchySubject$.next(this.hierarchy);
   }
 }

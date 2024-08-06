@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Chapter } from '../../services/chapter.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Topic, TopicService } from '../../services/topic.service';
 import { HierarchyService } from '../../services/hierarchy.service';
 
@@ -16,6 +16,7 @@ export class ViewTopicsComponent {
 
   constructor(private _topicService: TopicService,
               private _hierarchyService:HierarchyService,
+              private _router:Router,
               private _activatedRoute: ActivatedRoute) {
 
     _activatedRoute.params.subscribe(
@@ -44,5 +45,10 @@ export class ViewTopicsComponent {
   }
 
   ngOnInit(): void {
+  }
+
+  selectTopic(topic:any){
+    this._hierarchyService.setTopic(topic);
+    this._router.navigate(['/dashboard/courses/view-topic/'+topic._id]);
   }
 }

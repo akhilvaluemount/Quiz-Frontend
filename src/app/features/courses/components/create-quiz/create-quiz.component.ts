@@ -34,6 +34,18 @@ export class CreateQuizComponent {
 
   }
 
+  get questions(): FormArray{
+    return this.quizForm.get('questions') as FormArray;
+  }
+
+  addQuestion(): void{
+    this.questions.push(this.fb.control(''));
+  }
+
+  removeQuestion(index:number): void{
+    this.questions.removeAt(index);
+  }
+
   get tags(): FormArray {
     return this.quizForm.get('tags') as FormArray;
   }

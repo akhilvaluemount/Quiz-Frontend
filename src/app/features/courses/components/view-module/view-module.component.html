@@ -9,3 +9,9 @@
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->
     </div>
 </div>
+
+<br>
+
+<h1>{{selectCourse.name}} Quizzes</h1>
+<br>
+<app-view-quizzes [hierarchy]="'course'" [id]="courseID"></app-view-quizzes>
