@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Module, ModuleService } from '../../services/module.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-view-module',
@@ -10,9 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ViewModuleComponent {
   courseID: string = '';
   modules: Module[] = [];
-
+  selectCourse:any;
   constructor(
     private _moduleService: ModuleService,
+    private _hierarchyService: HierarchyService,
+    private  _router:Router,
     private _activatedRoute: ActivatedRoute
   ) {
     _activatedRoute.params.subscribe((params: any) => {
@@ -28,7 +31,20 @@ export class ViewModuleComponent {
         }
       );
     });
+    _hierarchyService.getHierachy().subscribe(
+      (hierarchy:any)=>{
+      this.selectCourse=hierarchy.course;      
+    },
+      (error:any)=>{
+        alert("Selected Course Not Found");
+      })
   }
 
   ngOnInit(): void {}
+
+  selectModule(module:any){
+    this._hierarchyService.setModule(module);
+    this._router.navigate(['/dashboard/courses/view-chapters/'+module._id]);    
+  }
 }
+

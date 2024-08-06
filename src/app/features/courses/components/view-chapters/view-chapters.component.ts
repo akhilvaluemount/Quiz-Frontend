@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Chapter, ChapterService } from '../../services/chapter.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-view-chapters',
@@ -10,8 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewChaptersComponent {
   moduleID:string=""
   chapters: Chapter[] = [];
-
-  constructor(private _chapterService: ChapterService, private _activatedRoute: ActivatedRoute) {
+  selectModule:any;
+  constructor(private _chapterService: ChapterService,
+              private _hierarchyService:HierarchyService,
+              private _router:Router, 
+              private _activatedRoute: ActivatedRoute) {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
@@ -27,9 +31,19 @@ export class ViewChaptersComponent {
 
       }
     )
-
+    _hierarchyService.getHierachy().subscribe(
+      (hierarchy:any)=>{
+        this.selectModule=hierarchy.module;        
+    }),
+      (error:any)=>{
+        alert('Selected Module not Found');
+      }
   }
 
   ngOnInit(): void {
+  }
+  selectChapter(chapter:any){
+    this._hierarchyService.setChapter(chapter);
+    this._router.navigate(['/dashboard/courses/view-topics/'+chapter._id]);
   }
 }

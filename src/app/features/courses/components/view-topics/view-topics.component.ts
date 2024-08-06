@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Chapter } from '../../services/chapter.service';
 import { ActivatedRoute } from '@angular/router';
 import { Topic, TopicService } from '../../services/topic.service';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-view-topics',
@@ -11,8 +12,11 @@ import { Topic, TopicService } from '../../services/topic.service';
 export class ViewTopicsComponent {
   topics: Topic[] = [];
   chapterID:string = "";
+  selectChapter:any;
 
-  constructor(private _topicService: TopicService, private _activatedRoute: ActivatedRoute) {
+  constructor(private _topicService: TopicService,
+              private _hierarchyService:HierarchyService,
+              private _activatedRoute: ActivatedRoute) {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
@@ -29,7 +33,14 @@ export class ViewTopicsComponent {
 
       }
     )
-
+    _hierarchyService.getHierachy().subscribe(
+      (hierarchy:any)=>{
+        this.selectChapter = hierarchy.chapter;
+      },
+      (error:any)=>{
+        alert("Selected Chapter Not Found");
+      }
+    )
   }
 
   ngOnInit(): void {
