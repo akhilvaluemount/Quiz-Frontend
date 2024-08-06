@@ -3,7 +3,7 @@
     <button class="btn btn-primary" routerLink="../../create-topic/{{chapterID}}">Create New Topic</button>
 </div>
 <div class="quiz-cards">
-    <div class="quiz-card" routerLink="../../view-topic/{{topic._id}}" *ngFor="let topic of topics">
+    <div class="quiz-card" (click)="selectTopic(topic)" *ngFor="let topic of topics">
         <h2>{{ topic.name }}</h2>
         <p>{{ topic._id }}</p>
         <!-- <small>{{ quiz.date | date:'short' }}</small> -->
@@ -12,4 +12,6 @@
 
 <br>
 
+<h1>{{selectChapter.name}} Quizzes</h1>
+<br>
 <app-view-quizzes [hierarchy]="'chapter'" [id]="chapterID"></app-view-quizzes>
