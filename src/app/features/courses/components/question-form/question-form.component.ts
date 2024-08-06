@@ -73,9 +73,9 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   questionForm: FormGroup;
 
   questionTypes = [
-    { value: 'multiple_choice', display: 'Multiple Choice' },
-    { value: 'multi_select', display: 'Multi Select' },
-    { value: 'true_false', display: 'True/False' }
+    { value: 'multipleChoice', display: 'Multiple Choice' },
+    { value: 'multiSelect', display: 'Multi Select' },
+    { value: 'trueFalse', display: 'True/False' }
   ];
 
   difficulties = ['Easy', 'Medium', 'Hard'];
@@ -83,9 +83,9 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   constructor(private fb: FormBuilder) {
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required],
-      explanation: ['', Validators.required],
-      dificulty: ['', Validators.required],
-      quetionType: ['multiple_choice', Validators.required],
+      explanation: [''],
+      dificulty: ['Medium', Validators.required],
+      quetionType: ['multipleChoice', Validators.required],
       options: this.fb.array([])
     });
 
@@ -93,7 +93,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       this.setOptions(type);
     });
 
-    this.setOptions('multiple_choice')
+    this.setOptions('multipleChoice')
   }
 
   get options() {
@@ -106,7 +106,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       optionsControl.removeAt(0);
     }
 
-    if (type === 'multiple_choice' || type === 'multi_select') {
+    if (type === 'multipleChoice' || type === 'multiSelect') {
       for (let i = 0; i < 4; i++) {
         optionsControl.push(this.fb.group({
           optionText: ['', Validators.required],
@@ -115,7 +115,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       }
     }
 
-    if (type === 'true_false') {
+    if (type === 'trueFalse') {
       optionsControl.push(this.fb.group({
         optionText: 'True',
         isCorrect: false
@@ -128,7 +128,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   }
 
   addOption() {
-    if (this.questionForm.get('quetionType')?.value !== 'true_false') {
+    if (this.questionForm.get('quetionType')?.value !== 'trueFalse') {
       this.options.push(this.fb.group({
         optionText: ['', Validators.required],
         isCorrect: false
@@ -145,8 +145,8 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   }
 
   selectOnlyOneCorrect(index: number) {
-    if (this.questionForm.get('quetionType')?.value === 'multiple_choice' ||
-        this.questionForm.get('quetionType')?.value === 'true_false') {
+    if (this.questionForm.get('quetionType')?.value === 'multipleChoice' ||
+        this.questionForm.get('quetionType')?.value === 'trueFalse') {
       this.options.controls.forEach((group, i) => {
         if (i !== index) {
           group.get('isCorrect')?.setValue(false);
