@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export interface Topic {
   _id?: string; // Optional if you include _id from MongoDB
   name: string;
-  chapterId: string; // Assuming chapter ID as a string
+  chapterId: string; // Assuming chapter Id as a string
 }
 
 @Injectable()
@@ -26,7 +26,7 @@ export class TopicService {
     return this.http.get<Topic[]>(this.baseUrl);
   }
 
-  // Get topics by chapter ID
+  // Get topics by chapter Id
   getTopicsByChapterId(chapterId: string): Observable<Topic[]> {
     return this.http.get<Topic[]>(`${this.baseUrl}/${chapterId}`);
   }

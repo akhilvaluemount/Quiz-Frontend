@@ -25,12 +25,12 @@ export class ChapterService {
     return this.http.get<Chapter[]>(this.baseUrl);
   }
 
-  // Get chapters by module ID
+  // Get chapters by module Id
   getChaptersByModuleId(moduleId: string): Observable<Chapter[]> {
     return this.http.get<Chapter[]>(`${this.baseUrl}/${moduleId}`);
   }
 
-  // Get a single chapter by ID
+  // Get a single chapter by Id
   getChapterById(chapterId: string): Observable<Chapter> {
     return this.http.get<Chapter>(`${this.baseUrl}/${chapterId}`);
   }

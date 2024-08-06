@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export interface Module {
   _id?: string; // Optional if you include _id from MongoDB
   name: string;
-  course: string; // Assuming organization ID as a string
+  course: string; // Assuming organization Id as a string
 }
 
 @Injectable()
@@ -26,7 +26,7 @@ export class ModuleService {
     return this.http.get<Module[]>(this.baseUrl);
   }
 
-  // Get a single module by ID
+  // Get a single module by Id
   getModulesByCourseId(courseId: string): Observable<Module> {
     return this.http.get<Module>(`${this.baseUrl}/${courseId}`);
   }

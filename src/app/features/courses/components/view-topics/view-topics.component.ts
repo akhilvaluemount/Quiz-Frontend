@@ -11,7 +11,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
 })
 export class ViewTopicsComponent {
   topics: Topic[] = [];
-  chapterID:string = "";
+  chapterId:string = "";
   selectChapter:any;
 
   constructor(private _topicService: TopicService,
@@ -21,9 +21,9 @@ export class ViewTopicsComponent {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
-        this.chapterID = params.chapterID;
+        this.chapterId = params.chapterId;
 
-        this._topicService.getTopicsByChapterId(this.chapterID)
+        this._topicService.getTopicsByChapterId(this.chapterId)
           .subscribe(
             (topics: any) => {
               this.topics = topics;

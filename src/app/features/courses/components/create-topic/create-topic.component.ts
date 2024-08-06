@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-topic.component.scss']
 })
 export class CreateTopicComponent {
-  chapterID:string=""
+  chapterId:string=""
   topicForm: FormGroup;
 
   constructor(
@@ -21,13 +21,13 @@ export class CreateTopicComponent {
   ) {
 
     this._activatedRoute.params.subscribe((params: any) => {
-      this.chapterID = params.chapterID;
-      console.log(this.chapterID)
+      this.chapterId = params.chapterId;
+      console.log(this.chapterId)
     });
     
     this.topicForm = this.formBuilder.group({
       name: ['', Validators.required],
-      chapterId: [{value: this.chapterID, disabled: true }, Validators.required]
+      chapterId: [{value: this.chapterId, disabled: true }, Validators.required]
     });
 
    }

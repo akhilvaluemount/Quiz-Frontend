@@ -27,7 +27,7 @@ export class QuizService {
     return this.http.get<any[]>(this.baseUrl,{ params });
   }
 
-  // Get a quiz by ID
+  // Get a quiz by Id
   getQuizById(quizId: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${quizId}`);
   }

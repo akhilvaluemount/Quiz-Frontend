@@ -9,14 +9,14 @@ import { HierarchyService } from '../../services/hierarchy.service';
 })
 export class ViewTopicComponent {
 
-  public topicID:any = "";
+  public topicId:any = "";
   public selectTopic:any="";
 
   constructor(private _activatedRoute:ActivatedRoute,
               private _hierarchyService:HierarchyService){
     _activatedRoute.params.subscribe(
       (params:any)=>{
-        this.topicID = params.topicID;
+        this.topicId = params.topicId;
       }
     )
 

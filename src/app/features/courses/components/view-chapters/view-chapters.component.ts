@@ -9,7 +9,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
   styleUrls: ['./view-chapters.component.scss']
 })
 export class ViewChaptersComponent {
-  moduleID:string=""
+  moduleId:string=""
   chapters: Chapter[] = [];
   selectModule:any;
   constructor(private _chapterService: ChapterService,
@@ -19,8 +19,8 @@ export class ViewChaptersComponent {
 
     _activatedRoute.params.subscribe(
       (params: any) => {
-        this.moduleID=params.moduleID
-        this._chapterService.getChaptersByModuleId(this.moduleID)
+        this.moduleId=params.moduleId
+        this._chapterService.getChaptersByModuleId(this.moduleId)
           .subscribe(
             (chapters: any) => {
               this.chapters = chapters;

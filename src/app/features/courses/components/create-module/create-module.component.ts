@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-module.component.scss'],
 })
 export class CreateModuleComponent {
-  courseID: string = '';
+  courseId: string = '';
   moduleForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -19,11 +19,11 @@ export class CreateModuleComponent {
     private _activatedRoute: ActivatedRoute
   ) {
     this._activatedRoute.params.subscribe((params: any) => {
-      this.courseID = params.courseID;
+      this.courseId = params.courseId;
     });
     this.moduleForm = this.formBuilder.group({
       name: ['', Validators.required],
-      courseId: [{value: this.courseID, disabled: true }, Validators.required],
+      courseId: [{value: this.courseId, disabled: true }, Validators.required],
     });
    
   }

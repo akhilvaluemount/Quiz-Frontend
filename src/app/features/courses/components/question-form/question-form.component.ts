@@ -85,13 +85,15 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       questionText: ['', Validators.required],
       explanation: ['', Validators.required],
       dificulty: ['', Validators.required],
-      quetionType: ['', Validators.required],
+      quetionType: ['multiple_choice', Validators.required],
       options: this.fb.array([])
     });
 
     this.questionForm.get('quetionType')?.valueChanges.subscribe(type => {
       this.setOptions(type);
     });
+
+    this.setOptions('multiple_choice')
   }
 
   get options() {

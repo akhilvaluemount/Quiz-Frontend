@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-chapter.component.scss']
 })
 export class CreateChapterComponent {
-  moduleID :string = ""
+  moduleId :string = ""
   chapterForm: FormGroup;
 
   constructor(
@@ -20,12 +20,12 @@ export class CreateChapterComponent {
     private _activatedRoute: ActivatedRoute
   ) {
     _activatedRoute.params.subscribe((params: any) => {
-      this.moduleID = params.moduleID;
+      this.moduleId = params.moduleId;
     });
 
     this.chapterForm = this.formBuilder.group({
       name: ['', Validators.required],
-      moduleId: [{value:this.moduleID,disabled:true}, Validators.required]
+      moduleId: [{value:this.moduleId,disabled:true}, Validators.required]
     });
 
    }

@@ -29,34 +29,48 @@ TODO
 
 
 <form [formGroup]="questionForm" (ngSubmit)="submit()">
-  <div>
-    <label>Question Text:</label>
-    <textarea formControlName="questionText"></textarea>
-    <div *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched">
-      Question text is required.
+  <div class="quetion-container">
+    <div class="quetion-text">
+      <label>Question Text:</label>
+      <textarea rows="5" formControlName="questionText"></textarea>
+      <div *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched">
+        Question text is required.
+      </div>
+    </div>
+    <div>
+      <label>Question Type:</label>
+      <select formControlName="quetionType">
+        <option *ngFor="let type of questionTypes" [value]="type.value">
+          {{ type.display }}
+        </option>
+      </select>
+      <div *ngIf="questionForm.get('quetionType')?.invalid && questionForm.get('quetionType')?.touched">
+        Question type is required.
+      </div>
+    </div>
+    <div>
+      <label>Difficulty:</label>
+      <select formControlName="dificulty">
+        <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
+      </select>
+      <div *ngIf="questionForm.get('dificulty')?.invalid && questionForm.get('dificulty')?.touched">
+        Difficulty is required.
+      </div>
     </div>
   </div>
+  
 
-  <div>
-    <label>Question Type:</label>
-    <select formControlName="quetionType">
-      <option *ngFor="let type of questionTypes" [value]="type.value">
-        {{ type.display }}
-      </option>
-    </select>
-    <div *ngIf="questionForm.get('quetionType')?.invalid && questionForm.get('quetionType')?.touched">
-      Question type is required.
-    </div>
-  </div>
+ 
 
   <div formArrayName="options" *ngIf="questionForm.get('quetionType')?.value === 'multiple_choice' || questionForm.get('quetionType')?.value === 'multi_select'">
     <div *ngFor="let option of options.controls; let i=index" [formGroupName]="i">
       <label>Option {{ i + 1 }}:</label>
       <input formControlName="optionText" />
-      <input type="checkbox" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" /> Correct
-      <button type="button" *ngIf="questionForm.get('quetionType')?.value === 'multi_select'" (click)="removeOption(i)">Remove</button>
+      <input *ngIf="questionForm.get('quetionType')?.value === 'multi_select'" type="checkbox" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" />
+      <input *ngIf="questionForm.get('quetionType')?.value === 'multiple_choice'" type="radio" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" /> Correct
+      <button type="button" (click)="removeOption(i)">Remove</button>
     </div>
-    <button type="button" *ngIf="questionForm.get('quetionType')?.value === 'multi_select'" (click)="addOption()">Add Option</button>
+    <button type="button" (click)="addOption()">Add Option</button>
   </div>
 
   <div formArrayName="options" *ngIf="questionForm.get('quetionType')?.value === 'true_false'">
@@ -74,15 +88,7 @@ TODO
     </div>
   </div>
 
-  <div>
-    <label>Difficulty:</label>
-    <select formControlName="dificulty">
-      <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
-    </select>
-    <div *ngIf="questionForm.get('dificulty')?.invalid && questionForm.get('dificulty')?.touched">
-      Difficulty is required.
-    </div>
-  </div>
+ 
 
   <button type="submit" [disabled]="questionForm.invalid">Submit</button>
 
