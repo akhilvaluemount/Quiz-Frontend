@@ -1,5 +1,6 @@
 <div class="dashboard-header">
     <h1>{{selectTopic.name}} Quizzes</h1>
+    <button class="btn btn-primary" (click)="openQuizComponent()">Create New Quiz</button>
 </div>
 
 <app-view-quizzes [hierarchy]="'topic'" [id]="topicId"></app-view-quizzes>

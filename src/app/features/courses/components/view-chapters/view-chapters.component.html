@@ -12,8 +12,11 @@
 
 <br>
 
-<h1>{{selectModule.name}} Quizzes</h1>
-<br>
+<div class="dashboard-header">
+    <h1>{{selectModule.name}} Quizzes</h1>
+    <button class="btn btn-primary" (click)="openQuizComponent()" >Create New Quiz </button>
+</div>
+
 <app-view-quizzes [hierarchy]="'module'" [id]="moduleId"></app-view-quizzes>
 
 <app-question-form></app-question-form>

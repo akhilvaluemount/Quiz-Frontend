@@ -12,6 +12,9 @@
 
 <br>
 
-<h1>{{selectChapter.name}} Quizzes</h1>
-<br>
+<div class="dashboard-header">
+    <h1>{{selectChapter.name}} Quizzes</h1>
+    <button class="btn btn-primary" (click)="openQuizComponent()" >Create New Quiz</button>
+</div>
+
 <app-view-quizzes [hierarchy]="'chapter'" [id]="chapterId"></app-view-quizzes>

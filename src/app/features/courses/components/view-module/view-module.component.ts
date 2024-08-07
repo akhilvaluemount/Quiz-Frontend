@@ -33,11 +33,11 @@ export class ViewModuleComponent {
     });
     _hierarchyService.getHierachy().subscribe(
       (hierarchy:any)=>{
-      this.selectCourse=hierarchy.course;      
+      this.selectCourse=hierarchy.course;            
     },
       (error:any)=>{
         alert("Selected Course Not Found");
-      })
+      });
   }
 
   ngOnInit(): void {}
@@ -45,6 +45,10 @@ export class ViewModuleComponent {
   selectModule(module:any){
     this._hierarchyService.setModule(module);
     this._router.navigate(['/dashboard/courses/view-chapters/'+module._id]);    
+  }
+
+  openQuizComponent(){
+    this._router.navigate(['/dashboard/courses/create-quiz']);
   }
 }
 
