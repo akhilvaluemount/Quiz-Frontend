@@ -42,8 +42,13 @@ export class ViewChaptersComponent {
 
   ngOnInit(): void {
   }
+
   selectChapter(chapter:any){
     this._hierarchyService.setChapter(chapter);
     this._router.navigate(['/dashboard/courses/view-topics/'+chapter._id]);
+  }
+
+  createQuiz(){
+    this._router.navigate(['/dashboard/courses/create-quiz']);
   }
 }

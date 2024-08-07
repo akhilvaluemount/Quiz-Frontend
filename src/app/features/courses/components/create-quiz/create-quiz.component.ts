@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuizService } from '../../services/quiz.service';
 import { Location } from '@angular/common';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-create-quiz',
@@ -11,7 +12,11 @@ import { Location } from '@angular/common';
 export class CreateQuizComponent {
   quizForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private location:Location, private _quizService:QuizService) {
+  constructor(private fb: FormBuilder,
+              private location:Location, 
+              private _quizService:QuizService,
+              private _hierarchyService:HierarchyService) {
+                
     this.quizForm = this.fb.group({
       title: [''],
       description: [''],
@@ -22,12 +27,24 @@ export class CreateQuizComponent {
       publishedAt: [''],
       visibility: ['private'],
       organizationId: [''],
+      branchId: [''],
       courseId: [''],
       moduleId: [''],
       chapterId: [''],
       topicId: [''],
       questions: this.fb.array([])
     });
+
+    _hierarchyService.getHierachy().subscribe(
+      (hierarchy:any)=>{
+        this.quizForm.get('organizationId')?.patchValue(hierarchy.organization._id);
+        this.quizForm.get('branchId')?.patchValue(hierarchy.branch._id);
+        this.quizForm.get('courseId')?.patchValue(hierarchy.course._id);
+        this.quizForm.get('moduleId')?.patchValue(hierarchy.module._id);
+        this.quizForm.get('chapterId')?.patchValue(hierarchy.chapter._id);
+        this.quizForm.get('topicId')?.patchValue(hierarchy.topic._id);
+      }
+    )
   }
 
   ngOnInit(): void {
