@@ -48,7 +48,7 @@ export class ViewChaptersComponent {
     this._router.navigate(['/dashboard/courses/view-topics/'+chapter._id]);
   }
 
-  openQuizComponent(){
+  createQuiz(){
     this._router.navigate(['/dashboard/courses/create-quiz']);
   }
 }

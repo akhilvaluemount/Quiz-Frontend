@@ -52,7 +52,7 @@ export class ViewTopicsComponent {
     this._router.navigate(['/dashboard/courses/view-topic/'+topic._id]);
   }
 
-  openQuizComponent(){
+  createQuiz(){
     this._router.navigate(['/dashboard/courses/create-quiz']);
   }
 }

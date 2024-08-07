@@ -47,7 +47,7 @@ export class ViewModuleComponent {
     this._router.navigate(['/dashboard/courses/view-chapters/'+module._id]);    
   }
 
-  openQuizComponent(){
+  createQuiz(){
     this._router.navigate(['/dashboard/courses/create-quiz']);
   }
 }

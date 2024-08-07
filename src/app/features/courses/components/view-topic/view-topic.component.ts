@@ -31,7 +31,7 @@ export class ViewTopicComponent {
     )
   }
 
-  openQuizComponent(){
+  createQuiz(){
     this._router.navigate(['/dashboard/courses/create-quiz'])
   }
 
