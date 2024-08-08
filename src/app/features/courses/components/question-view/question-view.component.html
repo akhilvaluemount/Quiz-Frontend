@@ -1,0 +1,37 @@
+<!-- question-view.component.html -->
+<div class="question-view-container">
+    <div class="question-header">
+      <h2>{{ question.questionText }}</h2>
+      <div class="question-meta">
+        <span class="question-type">{{ question.questionType }}</span>
+        <span class="question-difficulty">{{ question.difficulty }}</span>
+      </div>
+    </div>
+  
+    <div class="question-options">
+      <ng-container *ngIf="question.questionType === 'multipleChoice' || question.questionType === 'trueFalse'">
+        <div *ngFor="let option of question.options">
+          <label>
+            <input type="radio" name="option" [value]="option.optionText" />
+            {{ option.optionText }}
+          </label>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="question.questionType === 'multiSelect'">
+        <div *ngFor="let option of question.options">
+          <label>
+            <input type="checkbox" [value]="option.optionText" />
+            {{ option.optionText }}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  
+    <div *ngIf="false" class="advanced-options">
+      <div class="explanation">
+        <h3>Explanation</h3>
+        <p>{{ question.explanation }}</p>
+      </div>
+    </div>
+  </div>
+  

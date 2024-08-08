@@ -55,10 +55,12 @@
 
     <label>Topic Id:</label>
     <input type="text" formControlName="topicId" required>
-
+    <div *ngFor="let question of showQuestions" >
+        <app-question-view [question]="question" ></app-question-view>
+    </div>
     <div formArrayName="questions">
         <div *ngFor="let question of questions.controls; let i =index">
-            <app-question-form formControlName="{{i}}"></app-question-form>
+            <app-question-form (questionSubmit)="questionSubmt(i)" formControlName="{{i}}"></app-question-form>
             <button type="button" (click)="removeQuestion(i)">Remove Question</button>
         </div>
         <button type="button" (click)="addQuestion()">Add Question</button>

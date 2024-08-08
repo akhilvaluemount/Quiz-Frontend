@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
@@ -7,7 +7,6 @@ import {
   AbstractControl,
   ValidationErrors,
   FormGroup,
-  FormControl,
   Validators,
   FormArray,
   FormBuilder,
@@ -70,6 +69,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
 
   // ===============CVA================
 
+  @Output() questionSubmit: EventEmitter<any> = new EventEmitter();
   questionForm: FormGroup;
 
   questionTypes = [
@@ -84,12 +84,12 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required],
       explanation: [''],
-      dificulty: ['Medium', Validators.required],
-      quetionType: ['multipleChoice', Validators.required],
+      difficulty: ['Medium', Validators.required],
+      questionType: ['multipleChoice', Validators.required],
       options: this.fb.array([])
     });
 
-    this.questionForm.get('quetionType')?.valueChanges.subscribe(type => {
+    this.questionForm.get('questionType')?.valueChanges.subscribe(type => {
       this.setOptions(type);
     });
 
@@ -128,7 +128,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   }
 
   addOption() {
-    if (this.questionForm.get('quetionType')?.value !== 'trueFalse') {
+    if (this.questionForm.get('questionType')?.value !== 'trueFalse') {
       this.options.push(this.fb.group({
         optionText: ['', Validators.required],
         isCorrect: false
@@ -141,12 +141,13 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   }
 
   submit() {
+    this.questionSubmit.emit()
     console.log(this.questionForm.value);
   }
 
   selectOnlyOneCorrect(index: number) {
-    if (this.questionForm.get('quetionType')?.value === 'multipleChoice' ||
-        this.questionForm.get('quetionType')?.value === 'trueFalse') {
+    if (this.questionForm.get('questionType')?.value === 'multipleChoice' ||
+        this.questionForm.get('questionType')?.value === 'trueFalse') {
       this.options.controls.forEach((group, i) => {
         if (i !== index) {
           group.get('isCorrect')?.setValue(false);

@@ -75,6 +75,11 @@ input[type="checkbox"],input[type="radio"]  {
 
 }
 
+.add-option-button{
+  margin: 1% auto;
+
+}
+
 /* Button styling */
 button {
   /* margin-top: 20px; */

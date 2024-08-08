@@ -6,12 +6,16 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-create-quiz',
   templateUrl: './create-quiz.component.html',
-  styleUrls: ['./create-quiz.component.scss']
+  styleUrls: ['./create-quiz.component.scss'],
 })
 export class CreateQuizComponent {
   quizForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private location:Location, private _quizService:QuizService) {
+  constructor(
+    private fb: FormBuilder,
+    private location: Location,
+    private _quizService: QuizService
+  ) {
     this.quizForm = this.fb.group({
       title: [''],
       description: [''],
@@ -26,24 +30,28 @@ export class CreateQuizComponent {
       moduleId: [''],
       chapterId: [''],
       topicId: [''],
-      questions: this.fb.array([])
+      questions: this.fb.array([]),
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  get questions(): FormArray{
+  get questions(): FormArray {
     return this.quizForm.get('questions') as FormArray;
   }
 
-  addQuestion(): void{
+  addQuestion(): void {
     this.questions.push(this.fb.control(''));
   }
 
-  removeQuestion(index:number): void{
+  removeQuestion(index: number): void {
     this.questions.removeAt(index);
+  }
+
+  showQuestions: any[]=[]
+
+  questionSubmt(index: number) {
+    this.showQuestions.push(this.questions.at(index).value);
   }
 
   get tags(): FormArray {
@@ -65,13 +73,13 @@ export class CreateQuizComponent {
       console.log('Form submitted with data:', quizData);
       // Call your service to save the quizData
       this._quizService.createQuiz(this.quizForm.value).subscribe(
-        (data:any)=>{
-          alert("quiz creation success");
+        (data: any) => {
+          alert('quiz creation success');
         },
-        (err:any)=>{
-          alert("quiz creation failed");
+        (err: any) => {
+          alert('quiz creation failed');
         }
-      )
+      );
     } else {
       console.error('Form is invalid');
       // Handle invalid form submission
@@ -81,5 +89,4 @@ export class CreateQuizComponent {
   viewQuizzes() {
     this.location.back();
   }
-
 }

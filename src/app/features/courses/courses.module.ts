@@ -22,6 +22,7 @@ import { QuizService } from './services/quiz.service';
 import { ViewQuizzesComponent } from './components/view-quizzes/view-quizzes.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { ViewTopicComponent } from './components/view-topic/view-topic.component';
+import { QuestionViewComponent } from './components/question-view/question-view.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ViewTopicComponent } from './components/view-topic/view-topic.component
     ViewQuizComponent,
     ViewQuizzesComponent,
     QuestionFormComponent,
-    ViewTopicComponent
+    ViewTopicComponent,
+    QuestionViewComponent
   ],
   imports: [
     CommonModule,
