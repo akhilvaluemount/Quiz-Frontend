@@ -75,6 +75,11 @@ input[type="checkbox"],input[type="radio"]  {
 
 }
 
+.add-option-button{
+  margin: 1% auto;
+
+}
+
 /* Button styling */
 button {
   /* margin-top: 20px; */
@@ -123,12 +128,12 @@ h1 {
   color: #007bff;
 }
 
-.quetion-container{
+.question-container{
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 50% 50%;
 
-  .quetion-text{
+  .question-text{
     grid-area: 1 / 1 / span 2 / span 1;
   }
 

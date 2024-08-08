@@ -1,3 +1,4 @@
+
 <div class="dashboard-header">
     <h1>{{quiz.title}}</h1>
 
@@ -9,6 +10,7 @@
 <div *ngFor="let question of quiz.questions; let i = index">
 
      <h5> {{i+1 }} - {{ question.questionText}}</h5>
+     <app-question-view [question]="question" ></app-question-view>
      <br>
 
 </div>

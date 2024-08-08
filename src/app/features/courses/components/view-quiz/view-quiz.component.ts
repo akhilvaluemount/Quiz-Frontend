@@ -27,8 +27,8 @@ export class ViewQuizComponent {
       {
         "questionText": "what is angular?",
         "explanation": "spa",
-        "dificulty": "Medium",
-        "quetionType": "multipleChoice",
+        "difficulty": "Medium",
+        "questionType": "multipleChoice",
         "options": [
           {
             "optionText": "It is website",
@@ -56,8 +56,8 @@ export class ViewQuizComponent {
       {
         "questionText": "How many types of directives are there in angular?",
         "explanation": "3",
-        "dificulty": "Medium",
-        "quetionType": "multipleChoice",
+        "difficulty": "Medium",
+        "questionType": "multipleChoice",
         "options": [
           {
             "optionText": "1",
@@ -85,8 +85,8 @@ export class ViewQuizComponent {
       {
         "questionText": "async operations are provided by Rxjs Library in Angular",
         "explanation": "true",
-        "dificulty": "Medium",
-        "quetionType": "trueFalse",
+        "difficulty": "Medium",
+        "questionType": "trueFalse",
         "options": [
           {
             "optionText": "True",
@@ -106,8 +106,8 @@ export class ViewQuizComponent {
       {
         "questionText": "how to create component using angular CLI? ",
         "explanation": "ng g c ",
-        "dificulty": "Easy",
-        "quetionType": "multipleChoice",
+        "difficulty": "Easy",
+        "questionType": "multipleChoice",
         "options": [
           {
             "optionText": "ng g g componentName",
