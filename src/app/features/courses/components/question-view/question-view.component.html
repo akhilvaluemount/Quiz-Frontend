@@ -10,9 +10,9 @@
   
     <div class="question-options">
       <ng-container *ngIf="question.questionType === 'multipleChoice' || question.questionType === 'trueFalse'">
-        <div *ngFor="let option of question.options">
+        <div *ngFor="let option of question.options;let i=index">
           <label>
-            <input type="radio" name="option" [value]="option.optionText" />
+            <input type="radio" name="{{question._id}}" [value]="option.optionText" />
             {{ option.optionText }}
           </label>
         </div>

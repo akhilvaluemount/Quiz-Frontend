@@ -61,12 +61,6 @@ export class CreateQuizComponent {
     this.questions.removeAt(index);
   }
 
-  showQuestions: any[]=[]
-
-  questionSubmt(index: number) {
-    this.showQuestions.push(this.questions.at(index).value);
-  }
-
   get tags(): FormArray {
     return this.quizForm.get('tags') as FormArray;
   }
@@ -83,9 +77,14 @@ export class CreateQuizComponent {
     // alert('submit'+this.quizForm.valid);
     if (true) {
       const quizData: any = this.quizForm.value;
+
+      quizData.questions = quizData.questions.map((question:any)=>question.questionId);
+
       console.log('Form submitted with data:', quizData);
+
+
       // Call your service to save the quizData
-      this._quizService.createQuiz(this.quizForm.value).subscribe(
+      this._quizService.createQuiz(quizData).subscribe(
         (data: any) => {
           alert('quiz creation success');
         },

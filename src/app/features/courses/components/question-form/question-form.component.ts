@@ -74,13 +74,15 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   @Output() questionSubmit: EventEmitter<any> = new EventEmitter();
   questionForm: FormGroup;
 
+  @Input() question:any = {};
+
   questionTypes = [
     { value: 'multipleChoice', display: 'Multiple Choice' },
     { value: 'multiSelect', display: 'Multi Select' },
     { value: 'trueFalse', display: 'True/False' }
   ];
 
-  difficulties = ['Easy', 'Medium', 'Hard'];
+  difficulties = ['easy', 'medium', 'hard'];
 
   constructor(private fb: FormBuilder, 
               private _hierarchyService:HierarchyService,
@@ -89,7 +91,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required],
       explanation: [''],
-      difficulty: ['Medium', Validators.required],
+      difficulty: ['medium', Validators.required],
       questionType: ['multipleChoice', Validators.required],
       options: this.fb.array([]),
       organizationId: [''],
@@ -97,7 +99,8 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       courseId: [''],
       moduleId: [''],
       chapterId: [''],
-      topicId: ['']
+      topicId: [''],
+      questionId: ['']
     });
 
     this.questionForm.get('questionType')?.valueChanges.subscribe(type => {
@@ -131,7 +134,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
     if (type === 'multipleChoice' || type === 'multiSelect') {
       for (let i = 0; i < 4; i++) {
         optionsControl.push(this.fb.group({
-          optionText: ['', Validators.required],
+          text: ['', Validators.required],
           isCorrect: false
         }));
       }
@@ -139,11 +142,11 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
 
     if (type === 'trueFalse') {
       optionsControl.push(this.fb.group({
-        optionText: 'True',
+        text: 'True',
         isCorrect: false
       }));
       optionsControl.push(this.fb.group({
-        optionText: 'False',
+        text: 'False',
         isCorrect: false
       }));
     }
@@ -152,7 +155,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   addOption() {
     if (this.questionForm.get('questionType')?.value !== 'trueFalse') {
       this.options.push(this.fb.group({
-        optionText: ['', Validators.required],
+        text: ['', Validators.required],
         isCorrect: false
       }));
     }
@@ -167,7 +170,9 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
     // console.log(this.questionForm.value);
     this._questionsService.createQuestions(this.questionForm.value).subscribe(
       (question:any)=>{
-        this.questionSubmit.emit()
+        this.questionForm.get('questionId')?.patchValue(question._id);
+        this.question = question;
+        this.questionSubmit.emit();
         alert("Question Created Successfully!");
       },
       (error:any)=>{

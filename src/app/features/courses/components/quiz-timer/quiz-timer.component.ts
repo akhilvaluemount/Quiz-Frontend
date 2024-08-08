@@ -38,7 +38,7 @@ export class QuizTimerComponent implements OnInit, OnChanges {
     }
 
     // Start Interval
-    this.intervalId = setInterval(quizTimer, 100);
+    this.intervalId = setInterval(quizTimer, 1000);
 
   }
 

@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
 export class QuestionViewComponent {
   @Input()
   question!: {
+    _id:string;
     questionText: string;
     explanation: string;
     difficulty: string;
@@ -16,28 +17,5 @@ export class QuestionViewComponent {
     options: {optionText:string,isCorrect:boolean}[];
   };
 
-  constructor(){
-    this.question = 
-    // {
-    //   questionText: "what is your name?",
-    //   explanation: "name given to identify you",
-    //   difficulty: "Easy",
-    //   questionType: "multipleChoice",
-    //   options: ["1","2","3","4"]
-    // };
-    // {
-    //   questionText: "what is your name?",
-    //   explanation: "name given to identify you",
-    //   difficulty: "Easy",
-    //   questionType: "multiSelect",
-    //   options: ["1","2","3","4"]
-    // };
-    {
-      questionText: "what is your name?",
-      explanation: "name given to identify you",
-      difficulty: "Easy",
-      questionType: "trueFalse",
-      options: [{optionText:"asd",isCorrect:false}]
-    };
-  }
+  constructor(){}
 }
