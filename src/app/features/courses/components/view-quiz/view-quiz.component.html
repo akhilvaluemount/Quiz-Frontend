@@ -1,1 +1,14 @@
-<p>view-quiz works!</p>
+<div class="dashboard-header">
+    <h1>{{quiz.title}}</h1>
+
+    <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer>
+    <app-quiz-timer [quizDuration]="quiz.duration" [type]="'countdown'" (timerComplete)="submitQuiz()"></app-quiz-timer>
+
+</div>
+
+<div *ngFor="let question of quiz.questions; let i = index">
+
+     <h5> {{i+1 }} - {{ question.questionText}}</h5>
+     <br>
+
+</div>

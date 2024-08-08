@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'view-topics/:chapterId', component: ViewTopicsComponent },
   { path: 'view-topic/:topicId', component: ViewTopicComponent },  
   { path: 'create-quiz', component: CreateQuizComponent },
-  { path: 'view-quiz', component: ViewQuizComponent },
+  { path: 'view-quiz/:quizId', component: ViewQuizComponent },
   { path: 'view-quizzes', component: ViewQuizzesComponent },
   { path: '', component: ViewCoursesComponent }
 ];
