@@ -11,6 +11,8 @@ import {
   FormArray,
   FormBuilder,
 } from '@angular/forms';
+import { QuestionsService } from '../../services/questions.service';
+import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
   selector: 'app-question-form',
@@ -80,13 +82,22 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
 
   difficulties = ['Easy', 'Medium', 'Hard'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, 
+              private _hierarchyService:HierarchyService,
+              private _questionsService: QuestionsService) {
+
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required],
       explanation: [''],
       difficulty: ['Medium', Validators.required],
       questionType: ['multipleChoice', Validators.required],
-      options: this.fb.array([])
+      options: this.fb.array([]),
+      organizationId: [''],
+      branchId: [''],
+      courseId: [''],
+      moduleId: [''],
+      chapterId: [''],
+      topicId: ['']
     });
 
     this.questionForm.get('questionType')?.valueChanges.subscribe(type => {
@@ -94,6 +105,17 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
     });
 
     this.setOptions('multipleChoice')
+
+    _hierarchyService.getHierachy().subscribe(
+      (hierarchy:any)=>{
+        this.questionForm.get('organizationId')?.patchValue(hierarchy.organization._id);
+        this.questionForm.get('branchId')?.patchValue(hierarchy.branch._id);
+        this.questionForm.get('courseId')?.patchValue(hierarchy.course._id);
+        this.questionForm.get('moduleId')?.patchValue(hierarchy.module._id);
+        this.questionForm.get('chapterId')?.patchValue(hierarchy.chapter._id);
+        this.questionForm.get('topicId')?.patchValue(hierarchy.topic._id);
+      });
+
   }
 
   get options() {
@@ -141,8 +163,16 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
   }
 
   submit() {
-    this.questionSubmit.emit()
-    console.log(this.questionForm.value);
+    
+    // console.log(this.questionForm.value);
+    this._questionsService.createQuestions(this.questionForm.value).subscribe(
+      (question:any)=>{
+        this.questionSubmit.emit()
+        alert("Question Created Successfully!");
+      },
+      (error:any)=>{
+        alert("question Creation Failed");
+      });
   }
 
   selectOnlyOneCorrect(index: number) {

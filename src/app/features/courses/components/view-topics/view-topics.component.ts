@@ -51,4 +51,8 @@ export class ViewTopicsComponent {
     this._hierarchyService.setTopic(topic);
     this._router.navigate(['/dashboard/courses/view-topic/'+topic._id]);
   }
+
+  createQuiz(){
+    this._router.navigate(['/dashboard/courses/create-quiz']);
+  }
 }

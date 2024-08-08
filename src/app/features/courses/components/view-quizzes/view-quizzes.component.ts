@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-quizzes',
@@ -13,7 +14,7 @@ export class ViewQuizzesComponent implements OnChanges {
 
   quizzes: any=[];
 
-  constructor(private quizService: QuizService) { 
+  constructor(private quizService: QuizService, private _router:Router) { 
     // this.fetchQuizzes();
   }
 
@@ -35,6 +36,10 @@ export class ViewQuizzesComponent implements OnChanges {
         // Handle error
       }
     );
+  }
+
+  viewQuiz(quizId: any){
+    this._router.navigate(['dashboard/courses/view-quiz/'+quizId._id]);        
   }
 
   deleteQuiz(id: string): void {

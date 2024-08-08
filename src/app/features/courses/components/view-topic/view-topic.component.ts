@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HierarchyService } from '../../services/hierarchy.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class ViewTopicComponent {
   public selectTopic:any="";
 
   constructor(private _activatedRoute:ActivatedRoute,
+              private _router:Router,
               private _hierarchyService:HierarchyService){
     _activatedRoute.params.subscribe(
       (params:any)=>{
@@ -28,6 +29,10 @@ export class ViewTopicComponent {
         alert("Selected Topic Not Found");
       }
     )
+  }
+
+  createQuiz(){
+    this._router.navigate(['/dashboard/courses/create-quiz'])
   }
 
 }
