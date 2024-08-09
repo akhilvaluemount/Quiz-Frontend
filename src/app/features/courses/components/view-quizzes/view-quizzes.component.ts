@@ -38,8 +38,8 @@ export class ViewQuizzesComponent implements OnChanges {
     );
   }
 
-  viewQuiz(quizId: any){
-    this._router.navigate(['dashboard/courses/view-quiz/'+quizId._id]);        
+  viewQuiz(quizId: any): void{
+    this._router.navigate(['dashboard/courses/view-quiz/'+quizId]);
   }
 
   deleteQuiz(id: string): void {

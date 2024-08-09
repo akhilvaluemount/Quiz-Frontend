@@ -7,8 +7,18 @@
 
 </div>
 
-<div *ngFor="let question of quiz.questions; let i = index">
+<div *ngFor="let question of quiz.questions; let i = index" #questionElement>
 
-     <app-question-form [question]="question"></app-question-form>
+     <app-question-form [question]="question" ></app-question-form>
 
+</div>
+
+<div class="sidebar">
+    <span *ngFor="let question of quiz.questions; let i = index">
+        <button [ngClass]="question.options? 'answered' : 'notAnswered'"
+                (click)="scroll(i)">
+
+                {{i+1}}
+        </button>
+    </span>
 </div>

@@ -22,7 +22,6 @@ import { QuizService } from './services/quiz.service';
 import { ViewQuizzesComponent } from './components/view-quizzes/view-quizzes.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { ViewTopicComponent } from './components/view-topic/view-topic.component';
-import { QuestionViewComponent } from './components/question-view/question-view.component';
 import { QuestionsService } from './services/questions.service';
 import { QuizTimerComponent } from './components/quiz-timer/quiz-timer.component';
 
@@ -42,7 +41,6 @@ import { QuizTimerComponent } from './components/quiz-timer/quiz-timer.component
     ViewQuizzesComponent,
     QuestionFormComponent,
     ViewTopicComponent,
-    QuestionViewComponent,
     QuizTimerComponent
   ],
   imports: [
