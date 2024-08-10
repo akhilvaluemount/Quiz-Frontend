@@ -27,7 +27,8 @@ export class HierarchyService {
       },
       "_id": "66a913eb213add64e5061039",
       "name": "Mohith IT",
-      "logo": "https://mohithit.com/wp-content/uploads/2022/10/Mohith-IT-Final-Logo-2.png",
+      // "logo": "https://mohithit.com/wp-content/uploads/2022/10/Mohith-IT-Final-Logo-2.png",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Logo_International_Maritime_Organization.png",
       "type": "institute",
       "updatedAt": [],
       "__v": 0

@@ -5,6 +5,19 @@
     height: 100vh;
     background-color: #f7f7f7;
   }
+
+  a{
+    font-weight: 400;
+    line-height: 1.25rem;
+    direction: ltr;
+    text-align: left;
+    font-size: .8125rem;
+    box-sizing: border-box;
+    background-color: transparent;
+    text-decoration: none;
+    color: #0067b8;
+    white-space: nowrap;
+  }
   
   .login-box {
     background-color: #ffffff;

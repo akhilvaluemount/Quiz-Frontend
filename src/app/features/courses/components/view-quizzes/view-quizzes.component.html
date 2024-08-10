@@ -3,19 +3,12 @@
 <ul>
     <li *ngFor="let quiz of quizzes">
       <h3>{{ quiz.title }}</h3>
-      <p>{{ quiz.description }}</p>
-      <p>Duration: {{ quiz.duration }} minutes</p>
-      <p>Tags: {{ quiz.tags.join(', ') }}</p>
-      <p>Published: {{ quiz.isPublished ? 'Yes' : 'No' }}</p>
-      <!-- Display more fields as needed -->
-  
+      <!-- <p>{{ quiz.duration }} minutes</p>   -->
       <button >Edit</button>
       &nbsp;
       <button (click)="viewQuiz(quiz._id)">View</button>
       &nbsp;
       <button (click)="deleteQuiz(quiz._id)">Delete</button>
-
-      <!-- Add edit button and functionality as required -->
     </li>
   </ul>
   

@@ -30,6 +30,7 @@ export class ViewQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    alert("Triggering Full Screen"); //keep this till full screen issue fixed
     const element = document.documentElement;
     element.requestFullscreen();
   }

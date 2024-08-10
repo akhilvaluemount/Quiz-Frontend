@@ -2,7 +2,7 @@
 <div class="dashboard-header">
     <h1>{{quiz.title}}</h1>
 
-    <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer>
+    <!-- <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer> -->
     <app-quiz-timer [quizDuration]="quiz.duration" [type]="'countdown'" (timerComplete)="submitQuiz()"></app-quiz-timer>
 
 </div>
