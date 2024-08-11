@@ -31,7 +31,7 @@ TODO
   <form [formGroup]="questionForm" (ngSubmit)="submit()">
     <div class="question-container">
       <div class="question-text">
-        <textarea rows="5" formControlName="questionText" placeholder="Question"></textarea>
+        <textarea rows="6" formControlName="questionText" placeholder="Question"></textarea>
         <div *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched">
           Question text is required.
         </div>
@@ -54,10 +54,13 @@ TODO
           Difficulty is required.
         </div>
       </div>
-    </div>
-    
-  
-   
+      <div>
+        <input formControlName="marks" type="number" min="1" max="10"  placeholder="Enter Marks (1 - 10)" />
+        <div *ngIf="questionForm.get('marks')?.invalid && questionForm.get('marks')?.touched">
+          required 
+        </div>
+      </div>
+    </div>  
   
     <div formArrayName="options" *ngIf="questionForm.get('questionType')?.value === 'multipleChoice' || questionForm.get('questionType')?.value === 'multiSelect'"  >
       <div class="option" *ngFor="let option of options.controls; let i=index" [formGroupName]="i" [ngClass]= "options.controls[i]?.get('isCorrect')?.value  ? 'correct-answer' : '' ">

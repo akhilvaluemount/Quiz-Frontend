@@ -93,6 +93,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       explanation: [''],
       difficulty: ['medium', Validators.required],
       questionType: ['multipleChoice', Validators.required],
+      marks: ['',Validators.required],
       options: this.fb.array([]),
       organizationId: [''],
       branchId: [''],

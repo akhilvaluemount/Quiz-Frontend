@@ -42,4 +42,8 @@ export class QuizService {
     return this.http.delete<any>(`${this.baseUrl}/${quizId}`);
   }
 
+  submitQuiz(quiz:any):Observable<any>{
+    return this.http.post<any>(`${environment.baseUrl}/results`,quiz)
+  }
+
 }
