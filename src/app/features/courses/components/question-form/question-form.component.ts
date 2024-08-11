@@ -119,7 +119,6 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
         this.questionForm.get('chapterId')?.patchValue(hierarchy.chapter._id);
         this.questionForm.get('topicId')?.patchValue(hierarchy.topic._id);
       });
-
   }
 
   get options() {
