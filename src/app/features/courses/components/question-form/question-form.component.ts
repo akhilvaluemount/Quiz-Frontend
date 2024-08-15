@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
@@ -31,7 +31,7 @@ import { HierarchyService } from '../../services/hierarchy.service';
     },
   ],
 })
-export class QuestionFormComponent implements ControlValueAccessor, Validator {
+export class QuestionFormComponent implements OnInit, ControlValueAccessor, Validator {
 
   // ==============CVA===============
 
@@ -93,7 +93,7 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
       explanation: [''],
       difficulty: ['medium', Validators.required],
       questionType: ['multipleChoice', Validators.required],
-      marks: ['',Validators.required],
+      marks: [1,Validators.required],
       options: this.fb.array([]),
       organizationId: [''],
       branchId: [''],
@@ -119,7 +119,18 @@ export class QuestionFormComponent implements ControlValueAccessor, Validator {
         this.questionForm.get('chapterId')?.patchValue(hierarchy.chapter._id);
         this.questionForm.get('topicId')?.patchValue(hierarchy.topic._id);
       });
+  }
 
+  ngOnInit(): void {
+    this.questionForm.controls['questionType'].valueChanges.subscribe({
+      next: (value)=>{
+        if (value == "multiSelect"){
+          this.questionForm.controls["marks"].setValue(2)
+        }else{
+          this.questionForm.controls["marks"].setValue(1)
+        }
+      },
+    })
   }
 
   get options() {

@@ -48,7 +48,7 @@ import { QuizTimerComponent } from './components/quiz-timer/quiz-timer.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
   ],
   providers:[
     CourseService,

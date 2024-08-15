@@ -1,27 +1,52 @@
-
 .sidebar {
-    position: absolute; 
-    right: 0; 
-    top: 15%; 
-    width: 130px; 
-    background-color: #f4f4f4; 
-    padding: 5px;
-    border-left: 1px solid #ddd; 
-    height: 80%;
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 130px;
+  background-color: #f4f4f4;
+  padding: 5px;
+  border-left: 1px solid #ddd;
+  height: 80%;
 }
 
 .sidebar button {
-    width: 30%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    text-align: center;
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: center;
 }
 
-.answered{
-    background-color: green;
+.answered {
+  background-color: green;
 }
 
-.notAnswered{
-    background-color: rgb(254, 55, 55);
+.notAnswered {
+  background-color: rgb(254, 55, 55);
+}
+
+.modal-container {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center;
+  
+  width: 35%;
+  height: 35%;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  button {
+    border: 1px solid black;
+    width: 125px;
+    padding: 2px;
+    font-weight: 600;
+    border-radius: 5px;
+  }
 }
