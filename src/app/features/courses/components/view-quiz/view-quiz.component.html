@@ -16,7 +16,7 @@
 <div class="sidebar">
   <span *ngFor="let question of quiz.questions; let i = index">
     <button
-      [ngClass]="question.options ? 'answered' : 'notAnswered'"
+      [ngClass]="!question.options ? 'answered' : 'notAnswered'"
       (click)="scroll(i)"
     >
       {{ i + 1 }}

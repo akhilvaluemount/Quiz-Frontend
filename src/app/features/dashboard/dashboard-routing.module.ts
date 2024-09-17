@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
+        path: 'student-home',
+        loadChildren: () => import('../home/student-home/student-home.module').then(m => m.StudentHomeModule)
+      },
+      {
         path: 'organizations',
         loadChildren: () => import('../organizations/organizations.module').then(m => m.OrganizationsModule)
       },
