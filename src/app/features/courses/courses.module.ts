@@ -52,7 +52,7 @@ import { TagsInputComponent } from './components/tags-input/tags-input.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
   ],
   providers:[
     CourseService,

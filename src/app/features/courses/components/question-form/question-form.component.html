@@ -54,6 +54,7 @@ TODO
           Difficulty is required.
         </div>
       </div>
+<<<<<<< HEAD
     </div>
 
 
@@ -67,6 +68,20 @@ TODO
           formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
         <input *ngIf="questionForm.get('questionType')?.value === 'multipleChoice'" type="radio"
           formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
+=======
+      <div>
+        <input formControlName="marks" type="number" min="1" max="10"  placeholder="Enter Marks (1 - 10)" />
+        <div *ngIf="questionForm.get('marks')?.invalid && questionForm.get('marks')?.touched">
+          required 
+        </div>
+      </div>
+    </div>  
+  
+    <div formArrayName="options" *ngIf="questionForm.get('questionType')?.value === 'multipleChoice' || questionForm.get('questionType')?.value === 'multiSelect'"  >
+      <div class="option" *ngFor="let option of options.controls; let i=index" [formGroupName]="i" [ngClass]= "options.controls[i]?.get('isCorrect')?.value  ? 'correct-answer' : '' ">
+        <input *ngIf="questionForm.get('questionType')?.value === 'multiSelect'" type="checkbox" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
+        <input *ngIf="questionForm.get('questionType')?.value === 'multipleChoice'" type="radio" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
+>>>>>>> 80ce4aae35772e48adc87b7558b549073724ded4
         <input formControlName="text" class="option-input" placeholder="option {{i+1}}" />
         <button type="button" (click)="removeOption(i)">X</button>
       </div>

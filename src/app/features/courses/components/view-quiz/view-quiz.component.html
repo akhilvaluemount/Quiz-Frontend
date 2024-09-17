@@ -1,24 +1,50 @@
-
 <div class="dashboard-header">
-    <h1>{{quiz.title}}</h1>
+  <h1>{{ quiz.title }}</h1>
 
-    <!-- <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer> -->
-    <app-quiz-timer [quizDuration]="quiz.duration" [type]="'countdown'" (timerComplete)="submitQuiz()"></app-quiz-timer>
-
+  <!-- <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer> -->
+  <app-quiz-timer
+    [quizDuration]="quiz.duration"
+    [type]="'countdown'"
+    (timerComplete)="submitQuiz()"
+  ></app-quiz-timer>
 </div>
 
 <div *ngFor="let question of quiz.questions; let i = index" #questionElement>
-
-     <app-question-form [question]="question" ></app-question-form>
-
+  <app-question-form [question]="question"></app-question-form>
 </div>
 
 <div class="sidebar">
-    <span *ngFor="let question of quiz.questions; let i = index">
-        <button [ngClass]="question.options? 'answered' : 'notAnswered'"
-                (click)="scroll(i)">
+  <span *ngFor="let question of quiz.questions; let i = index">
+    <button
+      [ngClass]="question.options ? 'answered' : 'notAnswered'"
+      (click)="scroll(i)"
+    >
+      {{ i + 1 }}
+    </button>
+  </span>
+</div>
 
-                {{i+1}}
-        </button>
-    </span>
+<div
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="!isFullscreen && !isSubmitted"
+>
+  <div class="modal-container">
+    <h3>Moving to other tab or screen will submit the quiz</h3>
+    <div class="button-container">
+      <button id="auto_trigger" (click)="enterFullscreen()">
+        Resume quiz
+      </button>
+      <button (click)="submitQuiz()">Submit quiz</button>
+    </div>
+  </div>
 </div>

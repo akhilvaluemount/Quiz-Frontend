@@ -32,7 +32,7 @@ export class RegisterComponent {
       // Handle registration logic here
       this._authService.register(user).subscribe(
         (data:any)=>{
-          this._router.navigateByUrl('login');
+          this._router.navigateByUrl('auth/login');
           alert('Registration Success');
           console.log('Registration successful:', this.registrationForm.value);
         },
