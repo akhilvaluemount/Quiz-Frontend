@@ -52,12 +52,12 @@ form button:hover {
 .dashboard-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+    align-items: flex-start;
+    margin-bottom: 0rem;
 }
 
 .dashboard-header h1 {
-    margin: 0;
+    // margin: 0;
 }
 
 .quiz-cards {

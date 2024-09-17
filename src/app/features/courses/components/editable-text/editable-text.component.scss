@@ -1,0 +1,69 @@
+.editable-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.editable-text {
+    cursor: pointer;
+    border-bottom: 1px dotted #000;
+    padding-right: 20px;
+    // font-size: inherit;
+}
+
+.editable-input,
+.editable-textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    font-family: inherit;
+    /* Inherit styles dynamically based on the tag */
+}
+
+
+.editable-input.h1,
+.editable-textarea.h1 {
+    font-size: 2em;
+    /* Example for h1 */
+    font-weight: bold;
+}
+
+.editable-input.h2,
+.editable-textarea.h2 {
+    font-size: 1.5em;
+    /* Example for h2 */
+    font-weight: bold;
+}
+
+.editable-input.h3,
+.editable-textarea.h3 {
+    font-size: 1.17em;
+    /* Example for h3 */
+    font-weight: bold;
+}
+
+.editable-input.p,
+.editable-textarea.p {
+    font-size: 1em;
+    /* Example for paragraph */
+}
+
+.edit-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    cursor: pointer;
+    font-size: 14px;
+    color: #888;
+}
+
+.editable-container:hover .edit-icon {
+    visibility: visible;
+}
+
+
+.editable-container:hover .edit-icon {
+    display: block;
+}

@@ -1,0 +1,9 @@
+<div class="tags-container">
+    <div class="tag" *ngFor="let tag of tags">
+        {{ tag }}
+        <button type="button" (click)="removeTag(tag)">x</button>
+    </div>
+    <input *ngIf="isAddTag" [(ngModel)]="newTag" (keyup.enter)="addTag()" (blur)="onInputBlur()" placeholder="Add a tag">
+    <button *ngIf="isAddTag" type="button" (click)="isAddTag=!isAddTag">cancel</button>
+    <button type="button" (click)="addTag();isAddTag=!isAddTag">{{ isAddTag ? 'save' : 'add' }}</button>
+</div>

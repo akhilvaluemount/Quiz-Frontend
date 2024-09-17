@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuizService } from '../../services/quiz.service';
 import { Location } from '@angular/common';
@@ -11,6 +11,10 @@ import { HierarchyService } from '../../services/hierarchy.service';
 })
 export class CreateQuizComponent {
   quizForm: FormGroup;
+  selectQuestionIndex:number = 0;
+
+  @ViewChildren('questionElement') questionElements!: QueryList<ElementRef>;
+
 
   constructor(private fb: FormBuilder,
               private location:Location, 
@@ -21,8 +25,8 @@ export class CreateQuizComponent {
       title: [''],
       description: [''],
       creator: [''],
-      duration: [0, Validators.min(0)],
-      tags: this.fb.array([]),
+      duration: [30, Validators.min(0)],
+      tags: this.fb.array(['angular', 'architecture', 'data binding', 'interpolation']),
       isPublished: [false],
       publishedAt: [''],
       visibility: ['private'],
@@ -47,7 +51,16 @@ export class CreateQuizComponent {
     )
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+    this.addQuestion();
+  }
 
   get questions(): FormArray {
     return this.quizForm.get('questions') as FormArray;
@@ -71,6 +84,11 @@ export class CreateQuizComponent {
 
   removeTag(index: number): void {
     this.tags.removeAt(index);
+  }
+
+  selectQuestion(i:number){
+    console.log(i);
+    this.selectQuestionIndex = i;
   }
 
   onSubmit(): void {
@@ -101,4 +119,11 @@ export class CreateQuizComponent {
   viewQuizzes() {
     this.location.back();
   }
+
+  scroll(index: any){
+    const questionElement = this.questionElements.toArray()[index];
+    questionElement.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
+
 }

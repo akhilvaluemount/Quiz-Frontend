@@ -1,0 +1,125 @@
+.parent {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    // padding: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.dashboard-header-left{
+    width: 70%;
+}
+
+.left, .right {
+}
+
+.left {
+    flex: 1;
+    max-width: 75%;
+}
+
+.right {
+    max-width: 25%;
+    padding: 20px; 
+    background-color: #fff;
+    flex: 1;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.left button, .right button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.left button:hover, .right button:hover {
+    background-color: #0056b3;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    // font-weight: bold;
+    color: #333;
+}
+
+input[type="number"], input[type="text"], input[type="date"], input[type="checkbox"], select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 5px;
+}
+
+input[type="number"]:focus, input[type="text"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.right input[type="text"] {
+    margin-top: 0;
+}
+
+.right .formArrayName {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right button[type="button"] {
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.left, .right {
+    transition: box-shadow 0.3s ease;
+}
+
+.left:hover, .right:hover {
+    // box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.inline {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adds space between label and input */
+}
+
+.inline label {
+    font-size: 14px;
+    white-space: nowrap; /* Prevents the label from wrapping */
+    // margin-bottom: 3px;
+}
+
+.inline input {
+    width: 54px; /* Adjust width as needed */
+    padding: 4px;
+    font-size: 14px;
+}
+
+.duration-input{
+    width: 20px;
+}
+
+
+.question-number-button{
+    margin: 3px;
+}

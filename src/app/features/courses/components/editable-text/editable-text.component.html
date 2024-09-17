@@ -1,0 +1,18 @@
+<div class="editable-container" (click)="startEditing()">
+    <ng-container *ngIf="!isEditing">
+        <ng-container [ngSwitch]="tag">
+            <h1 *ngSwitchCase="'h1'" class="editable-text">{{ value || placeholder }}</h1>
+            <h2 *ngSwitchCase="'h2'" class="editable-text">{{ value || placeholder }}</h2>
+            <h3 *ngSwitchCase="'h3'" class="editable-text">{{ value || placeholder }}</h3>
+            <p *ngSwitchDefault class="editable-text">{{ value || placeholder }}</p>
+        </ng-container>
+        <i class="edit-icon" *ngIf="!isEditing">✎</i>
+    </ng-container>
+
+    <ng-container *ngIf="isEditing">
+        <input *ngIf="inputType === 'input'" [(ngModel)]="value" (blur)="onBlur()" class="editable-input"
+            [ngClass]="tag" />
+        <textarea *ngIf="inputType === 'textarea'" [(ngModel)]="value" (blur)="onBlur()" class="editable-textarea"
+            [ngClass]="tag"></textarea>
+    </ng-container>
+</div>

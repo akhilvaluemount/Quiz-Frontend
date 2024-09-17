@@ -1,47 +1,66 @@
-<!-- quiz-form.component.html -->
-<div class="dashboard-header">
-    <h1>Create Quiz</h1>
+<!-- <div class="dashboard-header">
     <button class="btn btn-primary" (click)="viewQuizzes()">View quizzes</button>
-</div>
-<!-- quiz-form.component.html -->
+</div> -->
+<a class="link" (click)="viewQuizzes()"> < view quizzes</a>
 
-<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
-    <label>Title:</label>
-    <input type="text" formControlName="title" required>
+<form [formGroup]="quizForm">
 
-    <label>Description:</label>
-    <textarea formControlName="description"></textarea>
-
-    <label>Creator:</label>
-    <input type="text" formControlName="creator" required>
-
-    <label>Duration (minutes):</label>
-    <input type="number" formControlName="duration">
-
-    <label>Tags:</label>
-    <div formArrayName="tags">
-        <div *ngFor="let tagControl of tags.controls; let i = index">
-            <input formControlName="{{i}}">
-            <button type="button" (click)="removeTag(i)">Remove Tag</button>
+    <!-- quiz-form.component.html -->
+    <div class="dashboard-header">
+        <div class="dashboard-header-left">
+            <app-editable-text formControlName="title" placeholder="Enter Quiz Title" tag="h1" inputType="input">
+            </app-editable-text>
+            <br>
+            <app-tags-input formControlName="tags"></app-tags-input>
+            <br>
+            <app-editable-text formControlName="description" placeholder="Enter Quiz Description" tag="p" inputType="input">
+            </app-editable-text>
         </div>
-        <button type="button" (click)="addTag()">Add Tag</button>
+        <div class="dashboard-header-right">
+            
+            <div class="inline">
+                <label>
+                    Duration:
+                    <input class="duration-input" type="number" formControlName="duration">
+                    (minutes)
+                </label>
+            </div>
+        
+            <div class="inline">
+                <label>Published:</label>
+                <input type="checkbox" formControlName="isPublished">
+            </div>
+
+        </div>
+
     </div>
 
-    <label>Published:</label>
-    <input type="checkbox" formControlName="isPublished">
+    <!-- quiz-form.component.html -->
 
-    <label>Published At:</label>
-    <input type="date" formControlName="publishedAt">
+    <!-- <app-editable-text formControlName="editableField1" placeholder="Enter title" tag="h1" inputType="input">
+    </app-editable-text>
 
-    <label>Visibility:</label>
-    <select formControlName="visibility">
-        <option value="public">Public</option>
-        <option value="private">Private</option>
-    </select>
+    <app-editable-text formControlName="editableField2" placeholder="Enter description" tag="p" inputType="textarea">
+    </app-editable-text> -->
 
-    <hr>
+    <!-- <label>Title:</label> -->
+    <!-- <input type="text" formControlName="title" required> -->
+    <!-- <app-editable-text formControlName="title" placeholder="Enter Quiz Title" tag="h1" inputType="input">
+    </app-editable-text> -->
 
-    <label>Organization Id:</label>
+    <!-- <label>Description:</label> -->
+    <!-- <textarea formControlName="description"></textarea> -->
+    <!-- <app-editable-text formControlName="description" placeholder="Enter Quiz Description" tag="h3" inputType="input">
+    </app-editable-text> -->
+
+    <!-- <label>Creator:</label>
+    <input type="text" formControlName="creator" required> -->
+    
+
+
+    <!-- <hr> -->
+
+    <!-- <label>Organization Id:</label>
     <input type="text" formControlName="organizationId" required>
 
     <label>Branch Id:</label>
@@ -57,17 +76,60 @@
     <input type="text" formControlName="chapterId" required>
 
     <label>Topic Id:</label>
-    <input type="text" formControlName="topicId" required>
+    <input type="text" formControlName="topicId" required> -->
 
-    <div formArrayName="questions">
-        <div *ngFor="let question of questions.controls; let i =index">
-            <app-question-form formControlName="{{i}}"></app-question-form>
-            <button type="button" (click)="removeQuestion(i)">Remove Question</button>
+    <div class="parent">
+        <div class="left">
+
+            <!-- <div formArrayName="questions">
+                <app-question-form formControlName="{{selectQuestionIndex}}"></app-question-form>
+            </div>
+             -->
+            <div formArrayName="questions">
+                <div *ngFor="let question of questions.controls; let i =index" #questionElement>
+                    <p>Question {{i+1}}</p>
+                    <app-question-form  formControlName="{{i}}"></app-question-form>
+                    <!-- <button type="button" (click)="removeQuestion(i)">Remove Question</button> -->
+                </div>
+                <!-- <button type="button" (click)="addQuestion()">Add Question</button> -->
+            </div>
+        
         </div>
-        <button type="button" (click)="addQuestion()">Add Question</button>
+        <div class="right">
+
+            <button type="button" (click)="addQuestion()">Add Question</button>
+
+            <hr>
+
+            <button class="question-number-button" 
+                *ngFor="let question of questions.controls; let i =index"
+                (click)="selectQuestion(i);scroll(i);"    
+            >
+                {{i+1}}
+            </button>
+
+            <hr>
+
+            <button  (click)="onSubmit()">Create Quiz</button>
+            
+
+            <!-- <label>Duration (minutes):</label>
+            <input type="number" formControlName="duration">
+        
+            <label>Published:</label>
+            <input type="checkbox" formControlName="isPublished">
+        
+            <label>Published At:</label>
+            <input type="date" formControlName="publishedAt">
+        
+            <label>Visibility:</label>
+            <select formControlName="visibility">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select> -->
+        
+
+        </div>
     </div>
-
-
-    <button type="submit">Submit</button>
 
 </form>

@@ -31,7 +31,7 @@ TODO
   <form [formGroup]="questionForm" (ngSubmit)="submit()">
     <div class="question-container">
       <div class="question-text">
-        <textarea rows="5" formControlName="questionText" placeholder="Question"></textarea>
+        <textarea rows="3" formControlName="questionText" placeholder="Question"></textarea>
         <div *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched">
           Question text is required.
         </div>
@@ -55,39 +55,43 @@ TODO
         </div>
       </div>
     </div>
-    
-  
-   
-  
-    <div formArrayName="options" *ngIf="questionForm.get('questionType')?.value === 'multipleChoice' || questionForm.get('questionType')?.value === 'multiSelect'"  >
-      <div class="option" *ngFor="let option of options.controls; let i=index" [formGroupName]="i" [ngClass]= "options.controls[i]?.get('isCorrect')?.value  ? 'correct-answer' : '' ">
-        <input *ngIf="questionForm.get('questionType')?.value === 'multiSelect'" type="checkbox" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
-        <input *ngIf="questionForm.get('questionType')?.value === 'multipleChoice'" type="radio" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
+
+
+
+
+    <div formArrayName="options"
+      *ngIf="questionForm.get('questionType')?.value === 'multipleChoice' || questionForm.get('questionType')?.value === 'multiSelect'">
+      <div class="option" *ngFor="let option of options.controls; let i=index" [formGroupName]="i"
+        [ngClass]="options.controls[i]?.get('isCorrect')?.value  ? 'correct-answer' : '' ">
+        <input *ngIf="questionForm.get('questionType')?.value === 'multiSelect'" type="checkbox"
+          formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
+        <input *ngIf="questionForm.get('questionType')?.value === 'multipleChoice'" type="radio"
+          formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" value="true" />
         <input formControlName="text" class="option-input" placeholder="option {{i+1}}" />
         <button type="button" (click)="removeOption(i)">X</button>
       </div>
       <button class="add-option-button" type="button" (click)="addOption()">Add Option</button>
     </div>
-  
+
     <div formArrayName="options" *ngIf="questionForm.get('questionType')?.value === 'trueFalse'">
       <div *ngFor="let option of options.controls; let i=index" [formGroupName]="i">
         <label>{{ option.value.text }}:</label>
         <input type="checkbox" formControlName="isCorrect" (change)="selectOnlyOneCorrect(i)" /> Correct
       </div>
     </div>
-  
-    <div>
+
+    <!-- <div>
       <label>Explanation:</label>
       <textarea formControlName="explanation"></textarea>
       <div *ngIf="questionForm.get('explanation')?.invalid && questionForm.get('explanation')?.touched">
         Explanation is required.
       </div>
-    </div>
-  
-   
-  
+    </div> -->
+
+
+
     <button type="submit" [disabled]="questionForm.invalid">Submit</button>
-  
+
   </form>
 </div>
 

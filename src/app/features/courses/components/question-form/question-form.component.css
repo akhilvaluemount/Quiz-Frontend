@@ -9,11 +9,13 @@
 /* Form styling */
 form {
   max-width: 100%;
-  margin: 50px auto;
+  /* margin: 50px auto; */
+  margin-bottom: 20px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
+  /* height: 50%; */
 }
 
 /* Label styling */
@@ -44,7 +46,7 @@ textarea:focus, select:focus, input[type="text"]:focus {
 
 .option-input{
   width: 60%;
-  padding: 10px;
+  padding: 8px;
 }
 
 .correct-answer {
@@ -63,7 +65,7 @@ textarea:focus, select:focus, input[type="text"]:focus {
 input[type="checkbox"],input[type="radio"]  {
   border-color: grey;
   transform: scale(1.7);
-  width: 3%;
+  width: 2%;
 
 }
 

@@ -24,6 +24,8 @@ import { QuestionFormComponent } from './components/question-form/question-form.
 import { ViewTopicComponent } from './components/view-topic/view-topic.component';
 import { QuestionsService } from './services/questions.service';
 import { QuizTimerComponent } from './components/quiz-timer/quiz-timer.component';
+import { EditableTextComponent } from './components/editable-text/editable-text.component';
+import { TagsInputComponent } from './components/tags-input/tags-input.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { QuizTimerComponent } from './components/quiz-timer/quiz-timer.component
     ViewQuizzesComponent,
     QuestionFormComponent,
     ViewTopicComponent,
-    QuizTimerComponent
+    QuizTimerComponent,
+    EditableTextComponent,
+    TagsInputComponent
   ],
   imports: [
     CommonModule,
