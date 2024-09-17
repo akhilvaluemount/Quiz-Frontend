@@ -62,11 +62,11 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
     return this.questionForm.valid
       ? null
       : {
-          invalidForm: {
-            valid: false,
-            message: 'questionForm fields are invalid',
-          },
-        };
+        invalidForm: {
+          valid: false,
+          message: 'questionForm fields are invalid',
+        },
+      };
   }
 
   // ===============CVA================
@@ -74,7 +74,7 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
   @Output() questionSubmit: EventEmitter<any> = new EventEmitter();
   questionForm: FormGroup;
 
-  @Input() question:any = {};
+  @Input() question: any = {};
 
   questionTypes = [
     { value: 'multipleChoice', display: 'Multiple Choice' },
@@ -84,16 +84,16 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
 
   difficulties = ['easy', 'medium', 'hard'];
 
-  constructor(private fb: FormBuilder, 
-              private _hierarchyService:HierarchyService,
-              private _questionsService: QuestionsService) {
+  constructor(private fb: FormBuilder,
+    private _hierarchyService: HierarchyService,
+    private _questionsService: QuestionsService) {
 
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required],
       explanation: [''],
       difficulty: ['medium', Validators.required],
       questionType: ['multipleChoice', Validators.required],
-      marks: [1,Validators.required],
+      marks: [1, Validators.required],
       options: this.fb.array([]),
       organizationId: [''],
       branchId: [''],
@@ -111,7 +111,7 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
     this.setOptions('multipleChoice')
 
     _hierarchyService.getHierachy().subscribe(
-      (hierarchy:any)=>{
+      (hierarchy: any) => {
         this.questionForm.get('organizationId')?.patchValue(hierarchy.organization._id);
         this.questionForm.get('branchId')?.patchValue(hierarchy.branch._id);
         this.questionForm.get('courseId')?.patchValue(hierarchy.course._id);
@@ -123,10 +123,10 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
 
   ngOnInit(): void {
     this.questionForm.controls['questionType'].valueChanges.subscribe({
-      next: (value)=>{
-        if (value == "multiSelect"){
+      next: (value) => {
+        if (value == "multiSelect") {
           this.questionForm.controls["marks"].setValue(2)
-        }else{
+        } else {
           this.questionForm.controls["marks"].setValue(1)
         }
       },
@@ -178,23 +178,22 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
   }
 
   submit() {
-    
     // console.log(this.questionForm.value);
     this._questionsService.createQuestions(this.questionForm.value).subscribe(
-      (question:any)=>{
+      (question: any) => {
         this.questionForm.get('questionId')?.patchValue(question._id);
         this.question = question;
         this.questionSubmit.emit();
         alert("Question Created Successfully!");
       },
-      (error:any)=>{
+      (error: any) => {
         alert("question Creation Failed");
       });
   }
 
   selectOnlyOneCorrect(index: number) {
     if (this.questionForm.get('questionType')?.value === 'multipleChoice' ||
-        this.questionForm.get('questionType')?.value === 'trueFalse') {
+      this.questionForm.get('questionType')?.value === 'trueFalse') {
       this.options.controls.forEach((group, i) => {
         if (i !== index) {
           group.get('isCorrect')?.setValue(false);
@@ -204,6 +203,3 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
   }
 
 }
-
-
-
