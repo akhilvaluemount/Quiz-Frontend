@@ -38,7 +38,11 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
   public onTouched!: () => {};
 
   writeValue(val: any): void {
-    val && this.questionForm.setValue(val, { emitEvent: false });
+    console.log("write value", val);
+    if(val.questionType){
+      this.setOptions(val.questionType);
+    }
+    val && this.questionForm.patchValue(val, { emitEvent: false });
   }
 
   registerOnChange(fn: any): void {
@@ -101,14 +105,11 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
       moduleId: [''],
       chapterId: [''],
       topicId: [''],
-      questionId: ['']
+      _id: ['']
     });
 
-    this.questionForm.get('questionType')?.valueChanges.subscribe(type => {
-      this.setOptions(type);
-    });
-
-    this.setOptions('multipleChoice')
+    
+    this.setOptions('multipleChoice');
 
     _hierarchyService.getHierachy().subscribe(
       (hierarchy: any) => {
@@ -119,11 +120,17 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
         this.questionForm.get('chapterId')?.patchValue(hierarchy.chapter._id);
         this.questionForm.get('topicId')?.patchValue(hierarchy.topic._id);
       });
+
+      this.questionForm.valueChanges.subscribe(value=>console.log("question-form vaue change",value));
+
   }
 
   ngOnInit(): void {
     this.questionForm.controls['questionType'].valueChanges.subscribe({
       next: (value) => {
+
+        this.setOptions(value);
+
         if (value == "multiSelect") {
           this.questionForm.controls["marks"].setValue(2)
         } else {
@@ -138,6 +145,7 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
   }
 
   setOptions(type: string) {
+
     const optionsControl = this.questionForm.get('options') as FormArray;
     while (optionsControl.length !== 0) {
       optionsControl.removeAt(0);
@@ -147,7 +155,8 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
       for (let i = 0; i < 4; i++) {
         optionsControl.push(this.fb.group({
           text: ['', Validators.required],
-          isCorrect: false
+          isCorrect: [false],
+          _id: ['']
         }));
       }
     }
@@ -155,11 +164,13 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
     if (type === 'trueFalse') {
       optionsControl.push(this.fb.group({
         text: 'True',
-        isCorrect: false
+        isCorrect: [false],
+        _id: ['']
       }));
       optionsControl.push(this.fb.group({
         text: 'False',
-        isCorrect: false
+        isCorrect: [false],
+        _id: ['']
       }));
     }
   }
@@ -168,7 +179,8 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
     if (this.questionForm.get('questionType')?.value !== 'trueFalse') {
       this.options.push(this.fb.group({
         text: ['', Validators.required],
-        isCorrect: false
+        isCorrect: [false],
+        _id: ['']
       }));
     }
   }
@@ -181,7 +193,7 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
     // console.log(this.questionForm.value);
     this._questionsService.createQuestions(this.questionForm.value).subscribe(
       (question: any) => {
-        this.questionForm.get('questionId')?.patchValue(question._id);
+        this.questionForm.patchValue(question);
         this.question = question;
         this.questionSubmit.emit();
         alert("Question Created Successfully!");
@@ -201,5 +213,6 @@ export class QuestionFormComponent implements OnInit, ControlValueAccessor, Vali
       });
     }
   }
+
 
 }

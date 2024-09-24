@@ -1,13 +1,13 @@
 import {
   Component,
   ElementRef,
-  HostListener,
   OnInit,
   QueryList,
   ViewChildren,
 } from '@angular/core';
 import { QuizService } from '../../services/quiz.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-view-quiz',
@@ -15,6 +15,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-quiz.component.scss'],
 })
 export class ViewQuizComponent implements OnInit {
+
+  quizViewForm:FormGroup = new FormGroup({
+    questions: new FormArray([])
+  });
+
   public quiz: any;
   public quizId: any;
   isFullscreen: boolean = false;
@@ -23,16 +28,29 @@ export class ViewQuizComponent implements OnInit {
   private lastScreenActive: any;
   @ViewChildren('questionElement') questionElements!: QueryList<ElementRef>;
 
+  get questionsFormArray(){
+    return this.quizViewForm.get('questions') as FormArray;
+  }
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _quizService: QuizService
   ) {
+
     this._activatedRoute.params.subscribe((params: any) => {
       this.quizId = params.quizId;
       this._quizService.getQuizById(this.quizId).subscribe((quiz: any) => {
         this.quiz = quiz;
+        for(let question of quiz.questions){
+          this.questionsFormArray.push(new FormControl(question));
+        }
       });
     });
+
+    this.quizViewForm.valueChanges.subscribe((data:any)=>{
+      console.log("quiz view valuechanges",data);
+    })
+
     document.addEventListener(
       'fullscreenchange',
       this.enterFullscreen.bind(this),
@@ -43,6 +61,7 @@ export class ViewQuizComponent implements OnInit {
       this.handleVisibilityChange.bind(this),
       false
     );
+
   }
 
   handleVisibilityChange() {
@@ -99,7 +118,6 @@ export class ViewQuizComponent implements OnInit {
   }
 
   submitQuiz() {
-    // alert('quiz submit request recieved');
     this.isFullscreen = false;
     this.isSubmitted = true;
   }
@@ -111,4 +129,5 @@ export class ViewQuizComponent implements OnInit {
       block: 'start',
     });
   }
+
 }

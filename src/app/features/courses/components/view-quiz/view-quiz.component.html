@@ -1,31 +1,42 @@
 <div class="dashboard-header">
   <h1>{{ quiz.title }}</h1>
-
   <!-- <app-quiz-timer [quizDuration]="quiz.duration" [type]="'timer'" (timerComplete)="submitQuiz()"></app-quiz-timer> -->
-  <app-quiz-timer
-    [quizDuration]="quiz.duration"
-    [type]="'countdown'"
-    (timerComplete)="submitQuiz()"
-  ></app-quiz-timer>
+  <app-quiz-timer [quizDuration]="quiz.duration" [type]="'countdown'" (timerComplete)="submitQuiz()"></app-quiz-timer>
 </div>
 
-<div *ngFor="let question of quiz.questions; let i = index" #questionElement>
+<!-- <div *ngFor="let question of quiz.questions; let i = index" #questionElement>
   <app-question-form [question]="question"></app-question-form>
 </div>
 
 <div class="sidebar">
   <span *ngFor="let question of quiz.questions; let i = index">
-    <button
-      [ngClass]="!question.options ? 'answered' : 'notAnswered'"
-      (click)="scroll(i)"
-    >
+    <button [ngClass]="!question.options ? 'answered' : 'notAnswered'" (click)="scroll(i)">
       {{ i + 1 }}
     </button>
   </span>
+</div> -->
+
+<!-- {{questionsFormArray.controls[]}} -->
+<!-- <app-question-form formControlName="{{questionsFormArray.con}}"></app-question-form> -->
+
+<div [formGroup]="quizViewForm">
+  <div formArrayName="questions">
+    <div *ngFor="let question of questionsFormArray.controls; let i = index" #questionElement>
+      <app-question-form formControlName="{{i}}"></app-question-form>
+    </div>
+  </div>
 </div>
 
-<div
-  style="
+<div class="sidebar">
+  <!-- <span *ngFor="let question of questionsFormArray.controls; let i = index">
+    <button [ngClass]="!question.options ? 'answered' : 'notAnswered'" (click)="scroll(i)">
+      {{ i + 1 }}
+    </button>
+  </span> -->
+</div>
+
+<!-- FullScreen Dialog -->
+<div style="
     position: fixed;
     top: 0;
     left: 0;
@@ -35,9 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  "
-  *ngIf="!isFullscreen && !isSubmitted"
->
+  " *ngIf="!isFullscreen && !isSubmitted">
   <div class="modal-container">
     <h3>Moving to other tab or screen will submit the quiz</h3>
     <div class="button-container">
